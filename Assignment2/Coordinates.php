@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="CoordinatesCSS.css">
+<link href='https://fonts.googleapis.com/css?family=Didact Gothic' rel='stylesheet'>
+</head>
+
+<style>
+body {
+ font-family: 'Didact Gothic';font-size: 22px;
+}
+</style>
+
 <body>
 
+<div id="background">
+    <img src="earth.gif" class="stretch" alt="" />
+</div>
+
+<div id="page-wrap">
 <!--
   // Creating form from which the user can input their coordinates
   // ------------------------------------------------------------- //
@@ -9,19 +26,19 @@
   //       jumping to a different page -- Errors can be presented
   //       on same page
 -->
-<h2> Assignment 2 </h3>
 
-<div class="Instruction">
-Please insert (longitude, latitude) separated by a comma (,) for two points<br><br>
-</div>
+<h1><center> Assignment 2 </center></h1>
+<h2><center> Task 1.4 </center></h2>
 
-<div class="Form">
+<center>Please input a (longitude, latitude) for the coordinates <br><br></center>
+
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-Coordinate 1: <input type="text" name="Coordinate1"><br><br>
-Coordinate 2: <input type="text" name="Coordinate2"><br><br>
-<input type="submit">
-</form></div>
+<center><b>Coordinate 1:</b> <input type="text" name="Coordinate1"><br><br></center>
+<center><b>Coordinate 2:</b> <input type="text" name="Coordinate2"><br><br></center>
+<center><input type="submit" value="Submit"></center>
+</form>
 <br>
+</div>
 
 <?php
   // This particular if statement is unnecessary -- however, if you wish
@@ -34,12 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Ensure only 2 elements are existing in the array
     // 1 element for longitude, 1 element for latitude
-  if(count($data1) > 2){
-    echo "Too many arguments provided...<br>";
-  }
-  if(count($data2) > 2){
-    echo "Too many arguments provided...<br>";
-  }
+  if(count($data1) > 2){echo "Too many arguments provided for Coordinate 1...<br>";}
+  if(count($data2) > 2){echo "Too many arguments provided for Coordinate 2...<br>";}
 
 // -------------------- STRIP WHITESPACES -------------------- //
     // Strip whitespaces from the beginning and end of the variables entered
@@ -91,12 +104,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   echo "Coordinate 1 is in Quadrant $quad1<br>";
   echo "Coordinate 2 is in Quadrant $quad2<br>";
 
+// -------------------- BEARING? -------------------- //
+
+
 // -------------------- CIRCLE DISTANCE? -------------------- //
 
   $dist = haversine($coord1_x, $coord1_y, $coord2_x, $coord2_y);
   echo "<br>The great circle distance between the two points are: $dist<br>";
 
-// ---------------------------------------- //
+// ---------------- TEST VALUES ------------------------ //
 
 echo "$coord1_x, $coord1_y<br>";
 echo "$coord2_x, $coord2_y<br>";
@@ -113,7 +129,7 @@ function quadrant ($x, $y){
   elseif(($x > 0) AND ($y > 0)){return 1;}
 }
 
-  // Calculating the great circle distance btween the two points provided
+  // Calculating the great circle distance between the two points provided
 function haversine ($x1, $y1, $x2, $y2){
   $dlon = $x2 - $x1;
   $dlat = $y2 - $y1;
