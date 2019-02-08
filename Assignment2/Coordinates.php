@@ -111,7 +111,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // -------------------- BEARING? -------------------- //
 
-    echo "<h3><center><b>-- Bearings --</b><center></h3>";
+    $dist = bearing($coord1_x, $coord1_y, $coord2_x, $coord2_y);
+    echo "<h3><center><b>-- Bearings --</b><center></h3>
+          <center>The bearing between the two points is approximately:</center>
+          <center><b>$dist</b></center>";
 
 
   // -------------------- CIRCLE DISTANCE? -------------------- //
@@ -119,15 +122,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dist = haversine($coord1_x, $coord1_y, $coord2_x, $coord2_y);
 
     echo "<h3><center><b>-- Great Circle Distance --</b><center></h3>
-          <center>The great circle distance between the two points are:</center>
+          <center>The great circle distance between the two points is
+          approximately:</center>
           <center><b>$dist</b></center><br>";
     echo '</div>';
-
-  // ---------------- TEST VALUES ------------------------ //
-
-  echo "$coord1_x, $coord1_y<br>";
-  echo "$coord2_x, $coord2_y<br>";
-
 }
 
 
@@ -147,13 +145,21 @@ function quadPrint($x, $y, $quad){
 
   // Determining quadrant of coordinates
 function quadrant ($x, $y){
-  if(($x == 0) OR ($y == 0)) {echo "on axis<br>";}
+    // Origin not confined to particular quadrant
+  if(($x == 0) OR ($y == 0)) {return 0;}
   elseif(($x < 0) AND ($y < 0)) {return 3;}
   elseif(($x < 0) AND ($y > 0)){return 2;}
   elseif(($x > 0) AND ($y < 0)){return 4;}
   elseif(($x > 0) AND ($y > 0)){return 1;}
 }
 
+  // Calculating the bearing between the two points provided
+function bearing ($x1, $y1, $x2, $y2){
+  $totalX = cos($y2)*sin($x2-$x1);
+  $totalY = cos($y1)*sin($y2)-sin($y1)*cos($y2)*cos(($x2-$x1));
+  $bearing = round(atan2($totalX, $totalY), 3);
+  return $bearing;
+}
   // Calculating the great circle distance between the two points provided
 function haversine ($x1, $y1, $x2, $y2){
   $dlon = $x2 - $x1;
@@ -161,13 +167,9 @@ function haversine ($x1, $y1, $x2, $y2){
 
   $a = pow(sin($dlat/2), 2) + cos($y1) * cos($y2) * pow(sin($dlon/2), 2);
   $b = 2 * asin(min(1, sqrt($a)));
-
-  return $b;
-    // Converts from radians to degrees
-    //  $c = $b * 57.295780;
+  $c = round(6373*$b, 3);
+  return $c;
 }
-
 ?>
-
 </body>
 </html>
