@@ -42,20 +42,21 @@
   // to implement GET request on the page, you can program different functionalities
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// ===================== ERROR CHECKING ===================== //
-
+// ===================== DATA FORM RETRIVAL  ===================== //
   // -------------------- SEPERATE LONG. & LAT. -------------------- //
-    $data1 = explode(",", $_POST["Coordinate1"]);
-    $data2 = explode(",", $_POST["Coordinate2"]);
+  $data1 = explode(",", $_POST["Coordinate1"]);
+  $data2 = explode(",", $_POST["Coordinate2"]);
 
+// ===================== ERROR CHECKING ===================== //
+  // -------------------- TOO MANY ARGUMENTS? -------------------- //
       // Ensure only 2 elements are existing in the array
       // 1 element for longitude, 1 element for latitude
-    if(count($data1) > 2){trigger_error("Too many arguments provided for Coordinate 1...<br>", E_USER_NOTICE);}
-    if(count($data2) > 2){trigger_error("Too many arguments provided for Coordinate 2...<br>", E_USER_ERROR);}
+    if(count($data1) > 2 OR count($data1) == 1 ){trigger_error("Incorrect number arguments provided for Coordinate 1...<br>", E_USER_ERROR);}
+    if(count($data2) > 2 OR count($data2) == 1 ){trigger_error("Incorrect number arguments provided for Coordinate 2...<br>", E_USER_ERROR);}
 
   // -------------------- STRIP WHITESPACES -------------------- //
-      // Strip whitespaces from the beginning and end of the variables entered
-      // x-coordinates = longitude      y-coordinates = latitude
+    // Strip whitespaces from the beginning and end of the variables entered
+    // x-coordinates = longitude      y-coordinates = latitude
     $coord1_x = trim($data1[0]); $coord1_y = trim($data1[1]);
     $coord2_x = trim($data2[0]); $coord2_y = trim($data2[1]);
 
@@ -63,12 +64,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check to determine if the form submitted is empty -- TRUE = ERROR
       // Check for input of first coordinate
     if(empty($coord1_x) || empty($coord1_y)){
-      trigger_error('Coordinate 1 has a value that is either 0, empty, or not set at all', E_USER_ERROR);
+        // If the value is 0, do nothing
+      if($coord1_x == "0" OR $coord1_y == "0"){}
+      else {
+        trigger_error('Coordinate 1 has a value that is empty, or not set at all', E_USER_ERROR);
+      }
     }
       // Check for input of second coordinate
-    if(empty($coord2_x) || empty($coord2_y)){
-      trigger_error('Coordinate 2 has a value that is either 0, empty, or not set at all<br>', E_USER_ERROR);
-    }
+      if(empty($coord2_x) || empty($coord2_y)){
+          // If the value is 0, do nothing
+        if($coord2_x == "0" OR $coord2_y == "0"){}
+        else {
+          trigger_error('Coordinate 2 has a value that is empty, or not set at all', E_USER_ERROR);
+        }
+      }
 
   // -------------------- IS NUMERIC? -------------------- //
     // Check to determine if the form submitted is empty -- TRUE = ERROR
@@ -81,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $err2[] = 'Coordinate 2 is an invalid input<br>';
     }
 
-
   // -------------------- WITHIN RANGE? -------------------- //
       // Check latitude and longitude is within range for first coordinate
     if(($coord1_y < -90 OR $coord1_y > 90 ) OR ($coord1_x < -180 OR $coord1_x > 180 )){
@@ -92,11 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $err2[] = 'Coordinate 2 is not within range<br>';
     }
 
-
 // ===================== CALCULATIONS ===================== //
-
-
-
   // -------------------- WHICH QUADRANT? -------------------- //
 
     $quad1 = quadrant($coord1_x, $coord1_y);
@@ -105,9 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(is_null($quad1)|| is_null($quad2)){
       echo "nothin<br>";
     }
-    echo "<h3><center><b>-- Quadrants --</b><center></h3>
-          <center>($coord1_x, $coord1_y) is in <b>Quadrant $quad1</b></center>
-          <center>($coord2_x, $coord2_y) is in <b>Quadrant $quad2</b></center>";
+    echo "<h3><center><b>-- Quadrants --</b><center></h3>";
+    quadPrint($coord1_x, $coord1_y, $quad1);
+    quadPrint($coord2_x, $coord2_y, $quad2);
 
   // -------------------- BEARING? -------------------- //
 
@@ -116,11 +120,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <center>The bearing between the two points is approximately:</center>
           <center><b>$dist</b></center>";
 
-
   // -------------------- CIRCLE DISTANCE? -------------------- //
 
     $dist = haversine($coord1_x, $coord1_y, $coord2_x, $coord2_y);
-
     echo "<h3><center><b>-- Great Circle Distance --</b><center></h3>
           <center>The great circle distance between the two points is
           approximately:</center>
@@ -128,25 +130,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo '</div>';
 }
 
-
 // -------------------- FUNCTIONS -------------------- //
 
 function errorCheck($error){
-    if($error) {
-        foreach ($_POST as $key => $value) {
-        $form[$key] = htmlspecialchars($value);
-      }
+  if($error) {
+    foreach ($_POST as $key => $value) {
+      $form[$key] = htmlspecialchars($value);
     }
+  }
 }
 
 function quadPrint($x, $y, $quad){
-  echo "<center>($x, $y) is in <b>Quadrant $quad</b></center><br>";
+  if (empty($quad))
+  {
+    echo "<center>($x, $y) is on the <b>Origin</b></center>";
+  }
+  else {
+    echo "<center>($x, $y) is in <b>Quadrant $quad</b></center>";
+  }
 }
 
   // Determining quadrant of coordinates
 function quadrant ($x, $y){
     // Origin not confined to particular quadrant
-  if(($x == 0) OR ($y == 0)) {return 0;}
+  if(($x == 0) AND ($y == 0)) {return 0;}
   elseif(($x < 0) AND ($y < 0)) {return 3;}
   elseif(($x < 0) AND ($y > 0)){return 2;}
   elseif(($x > 0) AND ($y < 0)){return 4;}
