@@ -2,9 +2,6 @@ body {
     width: 100%;
     height: 100%;
 
-    position: fixed;
-    overflow: hidden;
-
     background-size: cover;
     background-color: rgba(34, 34, 34, 0.9);
 
@@ -41,7 +38,7 @@ body {
 
   border-radius: 25px;
 
-  background: white;
+  background: rgb(248, 248, 255);
   background-image: none;
   background-attachment: scroll;
   background-repeat: repeat;
@@ -50,11 +47,9 @@ body {
   background-size: auto;
   background-origin: padding-box;
   background-clip: border-box;
-  background-color: white;
+  background-color: rgb(248, 248, 255);
   box-shadow: 0px 0px 20px black;
 
-}
+  overflow-y: auto;
 
-#mysubmit{
-  
 }
