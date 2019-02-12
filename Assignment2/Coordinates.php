@@ -51,8 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // -------------------- TOO MANY ARGUMENTS? -------------------- //
       // Ensure only 2 elements are existing in the array
       // 1 element for longitude, 1 element for latitude
-    if(count($data1) > 2 OR count($data1) == 1 ){trigger_error("Incorrect number arguments provided for Coordinate 1...<br>", E_USER_ERROR);}
-    if(count($data2) > 2 OR count($data2) == 1 ){trigger_error("Incorrect number arguments provided for Coordinate 2...<br>", E_USER_ERROR);}
+    if(count($data1) > 2 OR count($data1) == 1 ){customError("Incorrect number arguments provided for Coordinate 1...<br>");}
+    if(count($data2) > 2 OR count($data2) == 1 ){customError("Incorrect number arguments provided for Coordinate 2...<br>");}
 
   // -------------------- STRIP WHITESPACES -------------------- //
     // Strip whitespaces from the beginning and end of the variables entered
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // If the value is 0, do nothing
       if($coord1_x == "0" OR $coord1_y == "0"){}
       else {
-        trigger_error('Coordinate 1 has a value that is empty, or not set at all', E_USER_ERROR);
+        customError('Coordinate 1 has a value that is empty, or not set at all');
       }
     }
       // Check for input of second coordinate
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           // If the value is 0, do nothing
         if($coord2_x == "0" OR $coord2_y == "0"){}
         else {
-          trigger_error('Coordinate 2 has a value that is empty, or not set at all', E_USER_ERROR);
+          customError('Coordinate 2 has a value that is empty, or not set at all');
         }
       }
 
@@ -83,21 +83,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check to determine if the form submitted is empty -- TRUE = ERROR
       // Check for input of first coordinate
     if(!is_numeric($coord1_x) || !is_numeric($coord1_y)){
-      $err1[] = 'Coordinate 1 is an invalid input<br>';
+      customError('Coordinate 1 is an invalid input<br>');
     }
       // Check for input of second coordinate
     if(!is_numeric($coord2_x) || !is_numeric($coord2_y)){
-      $err2[] = 'Coordinate 2 is an invalid input<br>';
+      customError('Coordinate 2 is an invalid input<br>');
     }
 
   // -------------------- WITHIN RANGE? -------------------- //
       // Check latitude and longitude is within range for first coordinate
     if(($coord1_y < -90 OR $coord1_y > 90 ) OR ($coord1_x < -180 OR $coord1_x > 180 )){
-        $err1[] = 'Coordinate 1 is not within range<br>';
+      customError('Coordinate 1 is not within range<br>');
     }
       // Check latitude and longitude is within range for second coordinate
     if(($coord2_y < -90 OR $coord2_y > 90 ) OR ($coord2_x < -180 OR $coord2_x > 180 )){
-        $err2[] = 'Coordinate 2 is not within range<br>';
+      customError('Coordinate 2 is not within range<br>');
     }
 
 // ===================== CALCULATIONS ===================== //
@@ -106,9 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quad1 = quadrant($coord1_x, $coord1_y);
     $quad2 = quadrant($coord2_x, $coord2_y);
 
-    if(is_null($quad1)|| is_null($quad2)){
-      echo "nothin<br>";
-    }
     echo "<h3><center><b>-- Quadrants --</b><center></h3>";
     quadPrint($coord1_x, $coord1_y, $quad1);
     quadPrint($coord2_x, $coord2_y, $quad2);
@@ -177,6 +174,13 @@ function haversine ($x1, $y1, $x2, $y2){
   $c = round(6373*$b, 3);
   return $c;
 }
+
+  // Customizable Error Handler
+function customError( $errstr) {
+  echo "<br><center><b>Error:</b> $errstr<br></center>";
+  die();
+}
+
 ?>
 </body>
 </html>
