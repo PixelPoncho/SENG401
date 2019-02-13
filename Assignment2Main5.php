@@ -4,7 +4,7 @@ SENG401 Assignment 2: Server Side Programming
 Contributors: Nathan Godard
               Ines Rosito
               Rebecca Reid
-              Bogden Lykhosherstov
+              Bogdan Lykhosherstov
 
 Date Modified: Feb. 10, 2019
 Filename: Assignment2Main4.php
