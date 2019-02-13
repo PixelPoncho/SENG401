@@ -61,5 +61,5 @@ $a =  sin($xDiffernceRadians/2) * sin($xDiffernceRadians/2) +
       sin($yDifferenceRadians/2) * sin($yDifferenceRadians/2);
 $c = 2 * atan2(sqrt($a), sqrt(1-$a));
 $d = $R_earth * $c;
-echo "Great Circle Distance from point 1 to 2 is ".round($d, 2)." in meters. <br />";
+echo "Great circle distance from point 1 to 2 is ".round($d, 2)." in meters. <br />";
 ?>
