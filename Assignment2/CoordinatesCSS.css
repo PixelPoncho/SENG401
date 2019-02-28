@@ -1,0 +1,55 @@
+body {
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-color: rgba(34, 34, 34, 0.9);
+
+    left: 0px;
+    top: 0px;
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    overflow: hidden;
+
+    background-size: cover;
+    opacity: 0.3;
+    background-repeat: repeat;
+
+    left: 0px;
+    top: 0px;
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+#page-wrap {
+  width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+
+  border-radius: 25px;
+
+  background: rgb(248, 248, 255);
+  background-image: none;
+  background-attachment: scroll;
+  background-repeat: repeat;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-size: auto;
+  background-origin: padding-box;
+  background-clip: border-box;
+  background-color: rgb(248, 248, 255);
+  box-shadow: 0px 0px 20px black;
+
+  overflow-y: auto;
+
+}
