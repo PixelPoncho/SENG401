@@ -41,3 +41,7 @@ Route::get('/labs', function () {
 });
 
 // get, post, put, delete -- major things on Route that we use
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
