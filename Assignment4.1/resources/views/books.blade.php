@@ -1,12 +1,9 @@
+@extends ('layouts.app')
 
-<!DOCTYPE php>
-<html>
-  <head>
-
-  </head>
-  <body>
-    <p>
-      these are the books
-    </p>
-  </body>
-</html>
+@section('content')
+<div class='container'>
+  <div class='title'>
+      <h1>Books</h1>
+  </div>
+</div>
+@endsection
