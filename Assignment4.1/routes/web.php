@@ -19,6 +19,10 @@ Route::get('books', function (){
   return view('books');
 });
 
+Route::get('book_details', function (){
+  return view('book_details');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
