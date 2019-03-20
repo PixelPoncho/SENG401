@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -55,6 +56,7 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
+     //Figure out how to pass the comment in
     public function edit(Comment $comment)
     {
       return view('editForms.editComment', [
