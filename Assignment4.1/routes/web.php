@@ -32,3 +32,6 @@ Route::get('/home', 'HomeController@index')->name('home');  //This cannot be tak
 Route::get('/visitor', 'HomeController@visitor');
 Route::get('/subscriber', 'HomeController@subscriber');
 Route::get('/admin', 'HomeController@admin');
+
+Route::get('/book_details/{id}','BookController@bookDetails');
+
