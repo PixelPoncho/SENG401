@@ -57,7 +57,12 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+      return view('editForms.editComment', [
+        'name' => Auth::user()->name,
+        'user_id' => Auth::user()->id,
+        'role' => Auth::user()->role,
+        'book_id' => '1'  //Need a way to set this dynamically. In theory by passing the book into this function somehow?
+      ]);
     }
 
     /**
@@ -69,8 +74,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+          $comment = new Comment();
+          $comment -> text = $request->input('text');
+          $comment -> user_id = $request->input('user_id');
+          $comment -> book_id = $request->input('book_id');
+          $comment->save();
     }
+
 
     /**
      * Remove the specified resource from storage.

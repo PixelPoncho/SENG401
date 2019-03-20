@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,49 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      switch (Auth::user()->role) {
+          case 'visitor':
+              return $this->visitor();
+              break;
+          case 'subscriber':
+              return $this->subscriber();
+              break;
+          case 'admin':
+              return $this->admin();
+              break;
+          default:
+                  return '/home';
+              break;
+      }
     }
+
+//***********NEW STUFF************
+    public function visitor()
+    {
+        return view('visitor', [
+          'name' => Auth::user()->name,
+          'role' => Auth::user()->role,
+          'books' => \App\Book::all()
+        ]);
+    }
+
+    public function subscriber()
+    {
+        return view('subscriber', [
+          'name' => Auth::user()->name,
+          'role' => Auth::user()->role
+        ]);
+    }
+
+    public function admin()
+    {
+        return view('admin', [
+          'name' => Auth::user()->name,
+          'role' => Auth::user()->role,
+          'books' => \App\Book::all(),
+          'users' => \App\User::all()
+        ]);
+    }
+
+//************END NEW STUFF**********
 }

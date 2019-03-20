@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
+                     <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -24,6 +24,7 @@
                                 @endif
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -38,6 +39,37 @@
                                 @endif
                             </div>
                         </div>
+
+<!--NEW STUFF HERE -->
+<!--Date of birth-->
+                        <div class="form-group row">
+                               <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth (yyyy-mm-dd)') }}</label>
+
+                               <div class="col-md-6">
+                                   <input id="dob" type="date" class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" required>
+
+                                   @if ($errors->has('dob'))
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong>{{ $errors->first('dob') }}</strong>
+                                       </span>
+                                   @endif
+                               </div>
+                           </div>
+<!--Education Field-->
+                           <div class="form-group row">
+                                  <label for="educationField" class="col-md-4 col-form-label text-md-right">{{ __('Education Field') }}</label>
+
+                                  <div class="col-md-6">
+                                      <input id="educationField" type="text" class="form-control{{ $errors->has('educationField') ? ' is-invalid' : '' }}" name="educationField" value="{{ old('educationField') }}" required>
+
+                                      @if ($errors->has('educationField'))
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $errors->first('educationField') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+<!--END NEW STUFF -->
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
