@@ -82,4 +82,17 @@ class BookController extends Controller
     {
         //
     }
+
+    /**
+    * @return \Illuminate\Contracts\Support\Renderable
+    * @return \Illuminate\Http\Response
+    */
+    public function bookDetails($id)
+    {
+      // $res=Book::where('id',$id);
+      //$res=Book::all();
+      $res = Book::find($id);
+        return view('book_details')->with('res', $res);
+    }
+
 }
