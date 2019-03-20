@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @yield('userSpecificContent')
                 </div>
             </div>
         </div>

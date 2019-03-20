@@ -26,3 +26,15 @@ Route::get('book_details', function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/visitor', function () {
+    return view('visitor');
+});
+
+Route::get('/subscriber', function () {
+    return view('subscriber');
+});
+
+Route::get('/admin', function () {
+    return view('admin');
+});
