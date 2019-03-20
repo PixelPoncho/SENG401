@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,9 +13,13 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('book_details');
+      $res = Book::find($id);
+        return view('book_details', [
+          'res' => $res,
+          'comments' => Comment::where('book_id', $id)->get()
+        ]);
     }
 
     /**
@@ -44,10 +49,14 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
+     //WHERE DOES THIS GET CALLED FROM?
     public function show($id)
     {
       $res = Book::find($id);
-        return view('book_details')->with('res', $res);
+        return view('book_details', [
+          'res' => $res,
+          'comments' => Comment::where('book_id', $id)->get()
+        ]);
     }
 
     /**
@@ -59,7 +68,7 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         //public function edit( Post $post )
-    return view('book_details.edit', compact('book'))->with('res', $book);
+        return view('book_details.edit', compact('book'))->with('res', $book);
     }
 
     /**
@@ -71,7 +80,6 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
         Book::where('id', $book)->update($request->except(['_token', '_method']));
         return redirect('book_details')->with('res', $book);
     }
@@ -111,9 +119,9 @@ class BookController extends Controller
       $book->title = $request->input('title');
       $book->isbn = $request->input('isbn');
       $book->author_id = $request->input('author_id');
-     $book->publicationYear = $request->input('publicationYear');
-     $book->publisher = $request->input('publisher');
-     $book->localLinkToImage = $request->input('localLinkToImage');
+      $book->publicationYear = $request->input('publicationYear');
+      $book->publisher = $request->input('publisher');
+      $book->localLinkToImage = $request->input('localLinkToImage');
 
      $book->save();
      return view('book_details')->with('res', $book);

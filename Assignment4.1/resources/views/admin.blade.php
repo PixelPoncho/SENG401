@@ -26,7 +26,7 @@
 <h2>Books</h2>
 <ul>
 @foreach($books as $book)
-  <a href="\book_details">
+  <a href="\book_details\{{$book->id}}">
     <li>{{$book->title}}</li>
   </a>
 @endforeach
