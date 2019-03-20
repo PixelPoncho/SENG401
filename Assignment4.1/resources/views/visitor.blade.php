@@ -1,4 +1,4 @@
-@extends('home')
+@extends('layouts.home')
 
 @section('userSpecificContent')
 <h2>Books</h2>
