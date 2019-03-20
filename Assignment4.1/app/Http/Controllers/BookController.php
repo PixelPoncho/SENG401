@@ -44,9 +44,10 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($id)
     {
-        //
+      $res = Book::find($id);
+        return view('book_details')->with('res', $res);
     }
 
     /**
@@ -57,7 +58,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        //public function edit( Post $post )
+    return view('book_details.edit', compact('book'))->with('res', $book);
     }
 
     /**
@@ -70,6 +72,8 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         //
+        Book::where('id', $book)->update($request->except(['_token', '_method']));
+        return redirect('book_details')->with('res', $book);
     }
 
     /**
@@ -92,7 +96,27 @@ class BookController extends Controller
       // $res=Book::where('id',$id);
       //$res=Book::all();
       $res = Book::find($id);
-        return view('book_details')->with('res', $res);
+      return view('book_details')->with('res', $res);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateManual(Request $request)
+    {
+      $book = Book::find($request->id);;
+      $book->title = $request->input('title');
+      $book->isbn = $request->input('isbn');
+      $book->author_id = $request->input('author_id');
+     $book->publicationYear = $request->input('publicationYear');
+     $book->publisher = $request->input('publisher');
+     $book->localLinkToImage = $request->input('localLinkToImage');
+
+     $book->save();
+     return view('book_details')->with('res', $book);
     }
 
 }

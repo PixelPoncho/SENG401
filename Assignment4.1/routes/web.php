@@ -30,5 +30,11 @@ Route::get('/visitor', 'HomeController@visitor');
 Route::get('/subscriber', 'HomeController@subscriber');
 Route::get('/admin', 'HomeController@admin');
 
-Route::get('/book_details/{id}','BookController@bookDetails');
+Route::resource('book_details', 'BookController');
+//Route::get('/book_details/{id}','BookController@bookDetails');
+//Route::get('/book_edit/{id}','BookController@edit');
+//Route::resource('book_edit','BookController');
+
+// Route::get('/updating/{book}/edit', 'BookController@edit');
+// Route::patch('/updating/{book}', 'BookController@update');
 //END NEW STUFF
