@@ -19,8 +19,10 @@ Route::get('books', function (){
   return view('books');
 });
 
-Route::get('commentEdit', 'CommentController@edit');
-Route::post('commentEdit', 'CommentController@update');
+Route::get('commentEdit/{id}', 'CommentController@edit');
+Route::get('commentAdd/{id}', 'CommentController@create');
+Route::post('commentAdd', 'CommentController@store');
+Route::patch('commentEdit', 'CommentController@update');
 
 Route::get('/book_details/{id}', 'BookController@index'); //There should be some difference between these
 Route::resource('book_details', 'BookController');

@@ -40,10 +40,12 @@
 <ul>
 @foreach($comments as $comment)
 
-<li>{{ $comment->text }} <a href = '\commentEdit'> Edit </a></li>
+<li>{{ $comment->text }} <a href = '\commentEdit\{{$comment->id}}'> Edit </a></li>
 
 @endforeach
 </ul>
+<br />
+<a href = "\commentAdd\{{$res->id}}"> Add Comment</a>
 
 
 <!--EDIT BOOK FORM-->
