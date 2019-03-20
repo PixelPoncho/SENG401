@@ -1,4 +1,4 @@
-@extends('home')
+@extends('layouts.home')
 
 @section('userSpecificContent')
 <!--View elements specific to the visitor user goes here-->
@@ -16,6 +16,7 @@
       <li>Education Field: {{$user->educationField}}</li>
     </ul>
   </li>
+  <br />
 @endforeach
 </ul>
 <p><b>Note: </b> The ability to edit users does not yet exist</p>
