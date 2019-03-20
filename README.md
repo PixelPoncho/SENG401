@@ -8,19 +8,19 @@ https://bogdanlykhosherstov.github.io/SENG401_Website/index.html
 	- Ensure you are using the methods provided from the controllers 
 
 #### ~ Authentication: ~  
-- Login 
-- Registration 
-	- Requires *unique* username and password 
-	- Reject duplicate emails: *search database for email*
+- Login DONE
+- Registration DONE
+	- Requires *unique* username and password DONE
+	- Reject duplicate emails: *search database for email* DONE
 	- Review Laravel video on authentication
 
 #### ~ Visitor: ~ 
-- View books and attributes (image, name, ISBN, author)
+- View books and attributes (image, name, ISBN, author) Books, yes. Attributes, not yet.
 - View comments from subscribers on each book 
 - CANNOT comment on a book 
 
 #### ~ Subscriber: ~
-- View book and full attributes, and author 
+- View book and full attributes, and author Books, yes. Attributes, not yet
 - Comment on book: Before and While borrowing
 - Can see comments from other users 
 
