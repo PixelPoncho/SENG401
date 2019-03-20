@@ -19,22 +19,15 @@ Route::get('books', function (){
   return view('books');
 });
 
-Route::get('book_details', function (){
-  return view('book_details');
-});
+Route::get('book_details', 'BookController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');  //This cannot be taken out. Stuff breaks.
 
-Route::get('/visitor', function () {
-    return view('visitor');
-});
+//NEW STUFF
+Route::get('/visitor', 'HomeController@visitor');
+Route::get('/subscriber', 'HomeController@subscriber');
+Route::get('/admin', 'HomeController@admin');
 
-Route::get('/subscriber', function () {
-    return view('subscriber');
-});
-
-Route::get('/admin', function () {
-    return view('admin');
-});
+//END NEW STUFF
