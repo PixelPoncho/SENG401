@@ -1,17 +1,3 @@
-@extends ('layout')
-
-@section('content')
-<div class="title m-b-md">
-    SENG 401 - Assignment 4
-</div>
-
-<div class="links">
-
-  <a href="/books">Books</a>
-  Please log in to continue
-</div>
-@endsection
-<!--
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -19,13 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-      -->
         <!-- Fonts -->
-        <!--
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
--->
+
         <!-- Styles -->
-        <!--
         <style>
             html, body {
                 background-color: #fff;
@@ -101,18 +84,26 @@
           </div>
 
             <div class="content">
+              @yield('content')
+              <!--
                 <div class="title m-b-md">
-                    Group 3: Assignment 4
+                    Laravel
                 </div>
 
                 <div class="links">
-                    
 
+                    <a href="https://laravel.com/docs">Docs</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://blog.laravel.com">Blog</a>
+                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
 
-                 
+                  <a href="/books">Books</a>
                 </div>
+                -->
             </div>
         </div>
     </body>
 </html>
--->
