@@ -105,14 +105,19 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     *public function destroy(Book $book)
+     *{
+      *   //
+     *}
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
-    {
-        //
-    }
 
+    public function destroy($id)
+    {
+    $res=Book::where('id',$id)->delete();
+    return view('welcome');
+    }
     /**
     * @return \Illuminate\Contracts\Support\Renderable
     * @return \Illuminate\Http\Response
