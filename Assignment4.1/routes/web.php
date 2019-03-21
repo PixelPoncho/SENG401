@@ -40,6 +40,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');  //This cannot be taken out. Stuff breaks.
 
+Route::get('editAuthor/{id}', 'AuthorController@edit');
+Route::get('addAuthor', 'AuthorController@create');
+Route::post('addAuthor', 'AuthorController@store');
+Route::patch('editAuthor', 'AuthorController@update');
+
 //User homepages
 Route::get('/visitor', 'HomeController@visitor');
 Route::get('/subscriber', 'HomeController@subscriber');
