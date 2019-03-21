@@ -1,7 +1,7 @@
 @extends('layouts.home')
 <!--EDIT THIS TO EXTEND book_details instead, and book_details to extend home-->
 @section('userSpecificContent')
-<? $comment = "Default text"; ?>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
