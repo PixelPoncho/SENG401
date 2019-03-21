@@ -55,7 +55,8 @@ class HomeController extends Controller
     {
         return view('subscriber', [
           'name' => Auth::user()->name,
-          'role' => Auth::user()->role
+          'role' => Auth::user()->role,
+          'books' => \App\Book::all()
         ]);
     }
 
