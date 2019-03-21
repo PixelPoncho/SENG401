@@ -41,6 +41,7 @@
 <a href="\addSubscription">Add Subscription</a>
 <br />
 <br />
+
 <h2>Books</h2>
 <ul>
 @foreach($books as $book)
@@ -48,6 +49,9 @@
     <li>{{$book->title}}</li>
   </a>
 @endforeach
+<br />
+<br />
+<a href="\addBook">Add Book</a>
 </ul>
 <p><b>Note: </b> The ability to edit books does not yet exist</p>
 
