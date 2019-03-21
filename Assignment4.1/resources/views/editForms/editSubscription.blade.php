@@ -30,7 +30,7 @@
 
                             <div class="col-md-6">
                                 <!--<input id="comment" type="text" name="text" value=" $comment->text }}" required autofocus>-->
-                                <input name='end' type="date" value={{$end}}/>
+                                <input name='end' type="date" value={{$end}} />
                                 <input type="hidden" name="id" value = {{$sub_id}} />
                             </div>
                         </div>
