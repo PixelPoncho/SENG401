@@ -64,7 +64,8 @@ class HomeController extends Controller
           'name' => Auth::user()->name,
           'role' => Auth::user()->role,
           'books' => \App\Book::all(),
-          'users' => \App\User::all()
+          'users' => \App\User::all(),
+          'subscriptions' => \App\Subscription::all()
         ]);
     }
 
