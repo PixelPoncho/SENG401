@@ -41,7 +41,7 @@
 @foreach($comments as $comment)
 
 <li>{{ $comment->text }} <a href = '\commentEdit\{{$comment->id}}'> Edit </a></li>
-
+<p>     <p><a href = '\commentDestroy\{{$comment->id}}'> DELETE </a></li>
 @endforeach
 </ul>
 <br />

@@ -23,6 +23,7 @@ Route::get('commentEdit/{id}', 'CommentController@edit');
 Route::get('commentAdd/{id}', 'CommentController@create');
 Route::post('commentAdd', 'CommentController@store');
 Route::patch('commentEdit', 'CommentController@update');
+Route::get('commentDestroy/{id}', 'CommentController@destroy');
 
 Route::get('addSubscription', 'SubscriptionController@create');
 Route::get('editSubscription/{id}', 'SubscriptionController@edit');
