@@ -59,6 +59,18 @@
 <br />
 <a href="\addBook">Add Book</a>
 </ul>
-<p><b>Note: </b> The ability to edit books does not yet exist</p>
+
+
+<h2>Authors</h2>
+<ul>
+@foreach($authors as $author)
+    <li>{{$author->name}}</li>
+  <a href="\editAuthor\{{$author->id}}">Edit</a>
+@endforeach
+<br />
+<br />
+<a href="\addAuthor">Add Author</a>
+</ul>
+
 @endif
 @endsection

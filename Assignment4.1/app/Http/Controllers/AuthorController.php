@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Redirect;
 use App\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends Controller
 {
@@ -25,7 +26,10 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+      return view('editForms.addAuthor', [ //Parent view requires name and role to be passed
+        'name' => Auth::user()->name,
+        'role' => Auth::user()->role
+      ]);
     }
 
     /**
@@ -36,7 +40,10 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $author = new Author();
+      $author -> name = $request->input('name');
+      $author->save();
+      return Redirect::to('admin');
     }
 
     /**
@@ -56,9 +63,15 @@ class AuthorController extends Controller
      * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function edit(Author $author)
+    public function edit(Author $author, $id)
     {
-        //
+      $author = Author::findOrFail($id);
+      return view('editForms.editAuthor', [  //Parent view requires name and role to be passed
+        'name' => Auth::user()->name,
+        'role' => Auth::user()->role,
+        'auth_name' => $author->name,
+        'auth_id' => $id
+      ]);
     }
 
     /**
@@ -70,7 +83,12 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+      //dd($request);
+      $author = Author::findOrFail($request->input('auth_id'));
+      $input = $request->all();
+      $author->fill($input)->save();
+
+      return redirect()->back();
     }
 
     /**
@@ -79,8 +97,8 @@ class AuthorController extends Controller
      * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Author $author)
+    public function destroy(Author $author, $id)
     {
-        //
+      //REBECCA PLEASE HELP!
     }
 }
