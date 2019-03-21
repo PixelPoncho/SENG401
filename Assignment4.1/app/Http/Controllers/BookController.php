@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Comment;
+use App\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -29,7 +31,13 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+      $authors = Author::all();
+      return view('editForms.addBook', [ //Parent view requires name and role to be passed
+        'role' => Auth::user()->role,
+        'name' => Auth::user()->name,
+        'authors' => $authors
+        //'user_id' => Auth::user()->id,
+      ]);
     }
 
     /**
@@ -40,7 +48,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $book = new Book();
+      $book -> title = $request->input('title');
+      $book -> isbn = $request->input('isbn');
+      $book -> publisher = $request->input('publisher');
+      $book -> publicationYear = $request->input('year');
+      $book -> author_id = $request->input('author');
+      $book -> localLinkToImage = $request->input('localLinkToImage');
+      $book->save();
+      return Redirect::to('book_details/'.$book -> id); //When this line thows an error, figure out what include this file is missing
     }
 
     /**
@@ -65,6 +81,7 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
+     //NEVER GETS CALLED
     public function edit(Book $book)
     {
         //public function edit( Post $post )
@@ -78,10 +95,10 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $book, $id)
     {
-        Book::where('id', $book)->update($request->except(['_token', '_method']));
-        return redirect('book_details')->with('res', $book);
+        Book::where('id', $id)->update($request->except(['_token', '_method']));
+        return redirect('book_details')->with('res', $book);    //BROKEN
     }
 
     /**
@@ -101,8 +118,6 @@ class BookController extends Controller
     */
     public function bookDetails($id)
     {
-      // $res=Book::where('id',$id);
-      //$res=Book::all();
       $res = Book::find($id);
       return view('book_details')->with('res', $res);
     }

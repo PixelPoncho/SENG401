@@ -29,8 +29,10 @@ Route::get('editSubscription/{id}', 'SubscriptionController@edit');
 Route::post('addSubscription', 'SubscriptionController@store');
 Route::patch('editSubscription', 'SubscriptionController@update');
 
-Route::get('/book_details/{id}', 'BookController@index'); //There should be some difference between these
-Route::resource('book_details', 'BookController');
+Route::get('/book_details/{id}', 'BookController@index');
+Route::patch('book_details/{id}', 'BookController@update');
+Route::post('bookAdd', 'BookController@store');
+Route::get('addBook', 'BookController@create');
 
 Auth::routes();
 

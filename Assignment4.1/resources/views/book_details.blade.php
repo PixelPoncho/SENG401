@@ -46,7 +46,8 @@
 </ul>
 <br />
 <a href = "\commentAdd\{{$res->id}}"> Add Comment</a>
-
+<br />
+<br />
 
 <!--EDIT BOOK FORM-->
 <p> UPDATE INFO </p>
