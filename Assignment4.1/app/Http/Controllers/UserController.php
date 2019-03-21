@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
+
 
 class UserController extends Controller
 {
@@ -54,9 +58,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user, $id)
     {
-        //
+      $user = User::findOrFail($id);
+          return view('editForms.editUser', [
+            'name' => Auth::user()->name,
+            'role' => Auth::user()->role,
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'user_role' => $user->role
+          ]);
     }
 
     /**
@@ -66,9 +77,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+      $user = User::findOrFail($request->input('id'));
+      $input = $request->all();
+      $user->fill($input)->save();
+
+      return redirect()->back();
     }
 
     /**
