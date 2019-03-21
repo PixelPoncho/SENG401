@@ -13,4 +13,13 @@ class Comment extends Model
   public function book(){
     return $this->belongsTo('App\Book');
   }
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'text'
+  ];
 }

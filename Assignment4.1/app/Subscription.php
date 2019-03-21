@@ -13,4 +13,13 @@ class Subscription extends Model
   public function book(){
     return $this->belongsTo('App\Book');
   }
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'user_id',  'book_id', 'start', 'end'
+  ];
 }

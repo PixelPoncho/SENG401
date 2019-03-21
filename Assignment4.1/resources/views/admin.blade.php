@@ -23,6 +23,24 @@
 <br />
 <br />
 
+<h2>Subscriptions</h2>
+<ul>
+@foreach($subscriptions as $subscription)
+  <li>
+    <ul>
+      <li>UserID: {{$subscription->user_id}}</li>
+      <li>BookID: {{$subscription->book_id}}</li>
+      <li>Start Date: {{$subscription->start}}</li>
+      <li>End Date: {{$subscription->end}}</li>
+    </ul>
+    <a href="\editSubscription\{{$subscription->id}}">Edit</a>
+  </li>
+  <br />
+@endforeach
+</ul>
+<a href="\addSubscription">Add Subscription</a>
+<br />
+<br />
 <h2>Books</h2>
 <ul>
 @foreach($books as $book)

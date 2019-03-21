@@ -5,17 +5,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-                    <form method="POST" action="\commentEdit">
+                    <form method="POST" action="\commentAdd">
                         @csrf
-                        {{ method_field('PATCH') }}
 
                         <div class="form-group row">
                             <label for="text" class="col-md-4 col-form-label text-md-right">Comment:</label>
 
                             <div class="col-md-6">
-                                <!--//<input id="comment" type="text" name="text" value=" $comment->text }}" required autofocus>-->
-                                <textarea id="comment" name="text" required autofocus>{{$comment_text}} </textarea>
-                                <input type="hidden" name="comment_id" value = {{$comment_id}} />
+                                <!--<input id="comment" type="text" name="text" value=" $comment->text }}" required autofocus>-->
+                                <textarea id="comment" name="text" value="" required autofocus></textarea>
+                                <input type="hidden" name="user_id" value = {{$user_id}} />
+                                <input type="hidden" name="book_id" value = {{$book_id}} />
                             </div>
                         </div>
 
