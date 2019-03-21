@@ -80,11 +80,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-      $user = User::findOrFail($request->input('id'));
+      $user = User::findOrFail($request->input('user_id'));
       $input = $request->all();
       $user->fill($input)->save();
 
-      return redirect()->back();
+//change to send back to homepage?
+     //return redirect()->back();
+     return redirect("/");
+
     }
 
     /**

@@ -12,8 +12,7 @@
                             <label for="text" class="col-md-4 col-form-label text-md-right">User:</label>
 
                             <div class="col-md-6">
-                                <!--<input id="comment" type="text" name="text" value=" $comment->text }}" required autofocus>-->
-                                <!--<textarea id="comment" name="text" value="" required autofocus></textarea>-->
+
                                 <input id="name" type="text" name="user_name" value = {{$user_name}} />
                                 <input id="role" type="text" name="user_role" value = {{$user_role}} />
                                 <input type="hidden" name="user_id" value = {{$user_id}} />
