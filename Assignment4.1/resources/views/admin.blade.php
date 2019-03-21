@@ -15,6 +15,7 @@
       <li>Birthday: {{$user->dob}}</li>
       <li>Education Field: {{$user->educationField}}</li>
     </ul>
+    <a href="\editUser\{{$user->id}}">Edit</a>
   </li>
   <br />
 @endforeach
