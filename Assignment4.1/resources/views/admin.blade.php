@@ -1,6 +1,11 @@
 @extends('layouts.home')
 
 @section('userSpecificContent')
+@if((Auth::user()->role)!='admin')
+  <h2>Error</h2>
+  <p>Sorry, only admin can view this page</p>
+@endif
+@if((Auth::user()->role)=='admin')
 <!--View elements specific to the visitor user goes here-->
 
 <!--Lists of things they can see-->
@@ -55,5 +60,5 @@
 <a href="\addBook">Add Book</a>
 </ul>
 <p><b>Note: </b> The ability to edit books does not yet exist</p>
-
+@endif
 @endsection
