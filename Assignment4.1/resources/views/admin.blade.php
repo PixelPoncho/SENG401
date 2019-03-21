@@ -19,7 +19,7 @@
   <br />
 @endforeach
 </ul>
-<p><b>Note: </b> The ability to edit users does not yet exist</p>
+<!--<p><b>Note: </b> The ability to edit users does not yet exist</p>-->
 <br />
 <br />
 

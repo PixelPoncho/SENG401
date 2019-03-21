@@ -3,6 +3,7 @@
 @section('userSpecificContent')
 <? $name = "Default name"; ?>
 <? $email = "Default email"; ?>
+<? $role = "Default Role"; ?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -17,6 +18,7 @@
                                 <!--<textarea id="comment" name="text" value="" required autofocus></textarea>-->
                                 <input id="name" type="text" name="text" value=" $name->text }}" required autofocus>
                                 <input id="email" type="text" name="text" value=" $email->text }}" required autofocus>
+                                <input id="role" type="text" name="text" value=" $role->text }}" required autofocus>
                                 <input type="hidden" name="user_id" value = {{$user_id}} />
                                 <input type="hidden" name="book_id" value = {{$book_id}} />
 
@@ -26,7 +28,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Submit Comment
+                                    Submit User
                                 </button>
                             </div>
                         </div>
