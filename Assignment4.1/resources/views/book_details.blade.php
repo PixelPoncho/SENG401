@@ -49,23 +49,6 @@
 
 
 <!--EDIT BOOK FORM-->
-<p> UPDATE INFO </p>
-<form method="POST" action="/book_details/updateManual">
-  @csrf
-  {{ method_field('PATCH') }}
-  <input type="text" name="id" value="{{$res->id}}" disabled>
-  <input type="text" name="title" value="{{$res->title}}">
-  <input type="text" name="isbn" value="{{$res->isbn}}">
-  <input type="text" name="author_id" value="{{$res->author_id}}"> <!--MAKE THIS A DROP DOWN LIST OF AUTHORS IN THE SYSTEM-->
-  <input type="text" name="publicationYear" value="{{$res->publicationYear}}">
-  <input type="text" name="publisher" value="{{$res->publisher}}">
-  <input type="text" name="localLinkToImage" value="{{$res->localLinkToImage}}">
-  <div class="form-group row mb-0">
-    <div class="col-md-6 offset-md-4">
-      <button type="submit" class="btn btn-primary">
-        Update
-      </button>
-    </div>
-  </div>
-</form>
+<h1> UPDATE INFO </h1>
+<a href = "\bookEdit\{{$res->id}}"> Add Comment</a>
 @endsection

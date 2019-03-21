@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use App\Book;
 use App\Comment;
 use Illuminate\Http\Request;
@@ -27,9 +28,12 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        return view('editForms.addBook', [ //Parent view requires name and role to be passed
+          'book_id' => $id
+        ]);
     }
 
     /**
@@ -41,6 +45,16 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
+        $book = new Book();
+        $book->title = $request->input('title');
+        $book->isbn = $request->input('isbn');
+        $book->author_id = $request->input('author_id');
+        $book->publicationYear = $request->input('publicationYear');
+        $book->publisher = $request->input('publisher');
+        $book->localLinkToImage = $request->input('localLinkToImage');
+        $book->save();
+        return Redirect::to('book_details/'.$book -> book_id); //When this line thows an error, figure out what include this file is missing
+      }
     }
 
     /**
@@ -65,10 +79,24 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(Book $book, $id)
     {
         //public function edit( Post $post )
-        return view('book_details.edit', compact('book'))->with('res', $book);
+        $book = Book::findOrFail($id);
+        return view('editForms.editComment', [  //Parent view requires name and role to be passed
+          'title' => $book->title,
+          'isbn' => $book->isbn,
+          'author_id' => $book->author_id,
+          'publicationYear' => $book->publicationYear
+          'publisher' => $book->publisher
+          'localLinkToImage' => $book->localLinkToImage
+          // $book->title = $request->input('title');
+          // $book->isbn = $request->input('isbn');
+          // $book->author_id = $request->input('author_id');
+          // $book->publicationYear = $request->input('publicationYear');
+          // $book->publisher = $request->input('publisher');
+          // $book->localLinkToImage = $request->input('localLinkToImage');
+        ]);
     }
 
     /**
@@ -80,8 +108,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        Book::where('id', $book)->update($request->except(['_token', '_method']));
-        return redirect('book_details')->with('res', $book);
+
     }
 
     /**
@@ -104,7 +131,7 @@ class BookController extends Controller
       // $res=Book::where('id',$id);
       //$res=Book::all();
       $res = Book::find($id);
-      return view('book_details')->with('res', $res);
+      return redirect()->back();
     }
 
     /**
@@ -115,16 +142,20 @@ class BookController extends Controller
      */
     public function updateManual(Request $request)
     {
-      $book = Book::find($request->id);;
-      $book->title = $request->input('title');
-      $book->isbn = $request->input('isbn');
-      $book->author_id = $request->input('author_id');
-      $book->publicationYear = $request->input('publicationYear');
-      $book->publisher = $request->input('publisher');
-      $book->localLinkToImage = $request->input('localLinkToImage');
-
-     $book->save();
-     return view('book_details')->with('res', $book);
+      $book = Book::findOrFail($request->input('id'));
+      $input = $request->all();
+      // $book->title = $request->input('title');
+      // $book->isbn = $request->input('isbn');
+      // $book->author_id = $request->input('author_id');
+      // $book->publicationYear = $request->input('publicationYear');
+      // $book->publisher = $request->input('publisher');
+      // $book->localLinkToImage = $request->input('localLinkToImage');
+      $book->fill($input)->save();
+      echo $book->id;
+      echo "hello";
+     // $book->save();
+     //return redirect()->back();
+     return redirect('book_details')->with('res', $book);
     }
 
 }

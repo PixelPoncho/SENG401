@@ -30,7 +30,14 @@ Route::post('addSubscription', 'SubscriptionController@store');
 Route::patch('editSubscription', 'SubscriptionController@update');
 
 Route::get('/book_details/{id}', 'BookController@index'); //There should be some difference between these
+//Route::resource('book_details', 'BookController');
 Route::resource('book_details', 'BookController');
+Route::patch('book_details/updateManual','BookController@updateManual');
+
+Route::get('bookEdit/{id}', 'CommentController@edit');
+Route::get('bookAdd/{id}', 'CommentController@create');
+Route::post('bookAdd', 'CommentController@store');
+Route::patch('bookEdit', 'CommentController@update');
 
 Auth::routes();
 
@@ -42,8 +49,7 @@ Route::get('/subscriber', 'HomeController@subscriber');
 Route::get('/admin', 'HomeController@admin');
 
 
-Route::resource('book_details', 'BookController');
-Route::get('/book_details/updateManual','BookController@updateManual');
+
 
 
 //Route::get('/book_details/{id}','BookController@bookDetails');
