@@ -33,6 +33,7 @@ Route::get('/book_details/{id}', 'BookController@index');
 Route::patch('book_details/{id}', 'BookController@update');
 Route::post('bookAdd', 'BookController@store');
 Route::get('addBook', 'BookController@create');
+Route::get('destroyBook/{id}','BookController@destroy');
 
 Auth::routes();
 
