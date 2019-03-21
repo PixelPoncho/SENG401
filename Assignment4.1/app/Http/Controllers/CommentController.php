@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;

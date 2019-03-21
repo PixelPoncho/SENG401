@@ -15,11 +15,12 @@
       <li>Birthday: {{$user->dob}}</li>
       <li>Education Field: {{$user->educationField}}</li>
     </ul>
+    <a href="\editUser\{{$user->id}}">Edit</a>
   </li>
   <br />
 @endforeach
 </ul>
-<p><b>Note: </b> The ability to edit users does not yet exist</p>
+<!--<p><b>Note: </b> The ability to edit users does not yet exist</p>-->
 <br />
 <br />
 
