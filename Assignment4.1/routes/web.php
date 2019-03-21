@@ -34,10 +34,10 @@ Route::get('/book_details/{id}', 'BookController@index'); //There should be some
 Route::resource('book_details', 'BookController');
 Route::patch('book_details/updateManual','BookController@updateManual');
 
-Route::get('bookEdit/{id}', 'CommentController@edit');
-Route::get('bookAdd/{id}', 'CommentController@create');
-Route::post('bookAdd', 'CommentController@store');
-Route::patch('bookEdit', 'CommentController@update');
+Route::get('bookEdit/{id}', 'BookController@edit');
+Route::get('bookAdd/{id}', 'BookController@create');
+Route::post('bookAdd', 'BookController@store');
+Route::patch('bookEdit', 'BookController@update');
 
 Auth::routes();
 

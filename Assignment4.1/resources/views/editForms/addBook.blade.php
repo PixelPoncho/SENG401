@@ -12,10 +12,6 @@
                             <label for="text" class="col-md-4 col-form-label text-md-right">Book:</label>
 
                             <div class="col-md-6">
-                                <!--<input id="comment" type="text" name="text" value=" $comment->text }}" required autofocus>-->
-                                <!-- <textarea id="comment" name="text" value="" required autofocus></textarea>
-                                <input type="hidden" name="user_id" value = {{$user_id}} />
-                                <input type="hidden" name="book_id" value = {{$book_id}} /> -->
 
                                 <!-- <input type="text" name="id" value="{{$res->id}}" disabled> -->
                                 <input type="text" name="title" value="{{$res->title}}">

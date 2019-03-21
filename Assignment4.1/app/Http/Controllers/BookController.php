@@ -54,7 +54,7 @@ class BookController extends Controller
         $book->localLinkToImage = $request->input('localLinkToImage');
         $book->save();
         return Redirect::to('book_details/'.$book -> book_id); //When this line thows an error, figure out what include this file is missing
-      }
+
     }
 
     /**
@@ -87,8 +87,8 @@ class BookController extends Controller
           'title' => $book->title,
           'isbn' => $book->isbn,
           'author_id' => $book->author_id,
-          'publicationYear' => $book->publicationYear
-          'publisher' => $book->publisher
+          'publicationYear' => $book->publicationYear,
+          'publisher' => $book->publisher,
           'localLinkToImage' => $book->localLinkToImage
           // $book->title = $request->input('title');
           // $book->isbn = $request->input('isbn');
@@ -108,7 +108,11 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+      $book = Book::findOrFail($request->input('id'));
+      $input = $request->all();
+      $book->fill($input)->save();
 
+      return redirect()->back();
     }
 
     /**

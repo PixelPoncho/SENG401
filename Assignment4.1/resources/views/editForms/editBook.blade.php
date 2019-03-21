@@ -1,4 +1,4 @@
-B@extends('layouts.home')
+@extends('layouts.home')
 <!--EDIT THIS TO EXTEND book_details instead, and book_details to extend home-->
 @section('userSpecificContent')
 
@@ -10,13 +10,11 @@ B@extends('layouts.home')
                         {{ method_field('PATCH') }}
 
                         <div class="form-group row">
-                            <label for="text" class="col-md-4 col-form-label text-md-right">Comment:</label>
+                            <label for="text" class="col-md-4 col-form-label text-md-right">Edit:</label>
 
                             <div class="col-md-6">
-                                <!--//<input id="comment" type="text" name="text" value=" $comment->text }}" required autofocus>-->
-                                <textarea id="comment" name="text" required autofocus>{{$comment_text}} </textarea>
-                                <input type="hidden" name="comment_id" value = {{$comment_id}} />
 
+                                <input type="text" name="id" value="{{$res->id}}" disabled>
                                 <input type="text" name="title" value="{{$res->title}}">
                                 <input type="text" name="isbn" value="{{$res->isbn}}">
                                 <input type="text" name="author_id" value="{{$res->author_id}}"> <!--MAKE THIS A DROP DOWN LIST OF AUTHORS IN THE SYSTEM-->
@@ -29,7 +27,7 @@ B@extends('layouts.home')
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Submit Comment
+                                    Submit Edit
                                 </button>
                             </div>
                         </div>

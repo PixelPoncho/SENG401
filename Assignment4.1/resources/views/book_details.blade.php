@@ -50,5 +50,5 @@
 
 <!--EDIT BOOK FORM-->
 <h1> UPDATE INFO </h1>
-<a href = "\bookEdit\{{$res->id}}"> Add Comment</a>
+<a href = "\bookEdit\{{$res->id}}"> Update Info</a>
 @endsection
