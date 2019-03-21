@@ -65,7 +65,7 @@ class UserController extends Controller
           return view('editForms.editUser', [
             'name' => Auth::user()->name,
             'role' => Auth::user()->role,
-            'user_id' => $user->id,
+            'user_id' => $id,
             'user_name' => $user->name,
             'user_role' => $user->role
           ]);
@@ -81,12 +81,15 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
       $user = User::findOrFail($request->input('user_id'));
+      //dd($user);
       $input = $request->all();
+      //dd($input);
       $user->fill($input)->save();
+      //dd($user);
 
 //change to send back to homepage?
      //return redirect()->back();
-     return redirect("/");
+     return redirect("/admin");
 
     }
 
