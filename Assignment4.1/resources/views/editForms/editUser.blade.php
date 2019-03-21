@@ -13,8 +13,8 @@
 
                             <div class="col-md-6">
 
-                                <input id="name" type="text" name="user_name" value = {{$user_name}} />
-                                <input id="role" type="text" name="user_role" value = {{$user_role}} />
+                                Name:<input id="name" type="text" name="user_name" value = {{$user_name}} />
+                                Role:<input id="role" type="text" name="user_role" value = {{$user_role}} />
                                 <input type="hidden" name="user_id" value = {{$user_id}} />
 
 
