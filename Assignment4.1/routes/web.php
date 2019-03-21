@@ -41,6 +41,7 @@ Route::get('/visitor', 'HomeController@visitor');
 Route::get('/subscriber', 'HomeController@subscriber');
 Route::get('/admin', 'HomeController@admin');
 
+Route::get('editUser/{name, role}', 'UserController@edit');
 
 //Route::get('/book_details/{id}','BookController@bookDetails');
 //Route::get('/book_edit/{id}','BookController@edit');

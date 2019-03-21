@@ -2,7 +2,6 @@
 <!--EDIT THIS TO EXTEND book_details instead, and book_details to extend home-->
 @section('userSpecificContent')
 <? $name = "Default name"; ?>
-<? $email = "Default email"; ?>
 <? $role = "Default Role"; ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -17,7 +16,6 @@
                                 <!--<input id="comment" type="text" name="text" value=" $comment->text }}" required autofocus>-->
                                 <!--<textarea id="comment" name="text" value="" required autofocus></textarea>-->
                                 <input id="name" type="text" name="text" value=" $name->text }}" required autofocus>
-                                <input id="email" type="text" name="text" value=" $email->text }}" required autofocus>
                                 <input id="role" type="text" name="text" value=" $role->text }}" required autofocus>
                                 <input type="hidden" name="user_id" value = {{$user_id}} />
                                 <input type="hidden" name="book_id" value = {{$book_id}} />
