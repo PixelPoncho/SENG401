@@ -1,6 +1,12 @@
 @extends('layouts.home')
 <!--EDIT THIS TO EXTEND book_details instead, and book_details to extend home-->
 @section('userSpecificContent')
+@if((Auth::user()->role)!='admin')
+  <h2>Error</h2>
+  <p>Sorry, only admin can view this page</p>
+@endif
+@if((Auth::user()->role)=='admin')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -35,4 +41,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection

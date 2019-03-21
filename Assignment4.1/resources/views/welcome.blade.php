@@ -7,7 +7,7 @@
 
 <div class="links">
 
-  <a href="/books">Books</a>
+  <!--<a href="/books">Books</a>-->
   Please log in to continue
 </div>
 @endsection
