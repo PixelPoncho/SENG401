@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\BookController;
 
 class CommentController extends Controller
 {
@@ -22,9 +24,14 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('editForms.addComment', [ //Parent view requires name and role to be passed
+          'name' => Auth::user()->name,
+          'user_id' => Auth::user()->id,
+          'role' => Auth::user()->role,
+          'book_id' => $id
+        ]);
     }
 
     /**
@@ -33,9 +40,14 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //This $request field is the $_POST data
     {
-        //
+      $comment = new Comment();
+      $comment -> text = $request->input('text');
+      $comment -> user_id = $request->input('user_id');
+      $comment -> book_id = $request->input('book_id');
+      $comment->save();
+      return Redirect::to('book_details/'.$comment -> book_id); //When this line thows an error, figure out what include this file is missing
     }
 
     /**
@@ -55,13 +67,15 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+     //Figure out how to pass the comment in
+    public function edit(Comment $comment, $id)
     {
-      return view('editForms.editComment', [
+      $comment = Comment::findOrFail($id);
+      return view('editForms.editComment', [  //Parent view requires name and role to be passed
         'name' => Auth::user()->name,
-        'user_id' => Auth::user()->id,
         'role' => Auth::user()->role,
-        'book_id' => '1'  //Need a way to set this dynamically. In theory by passing the book into this function somehow?
+        'comment_id' => $comment->id,
+        'comment_text' => $comment->text
       ]);
     }
 
@@ -74,11 +88,11 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-          $comment = new Comment();
-          $comment -> text = $request->input('text');
-          $comment -> user_id = $request->input('user_id');
-          $comment -> book_id = $request->input('book_id');
-          $comment->save();
+        $comment = Comment::findOrFail($request->input('comment_id'));
+        $input = $request->all();
+        $comment->fill($input)->save();
+
+        return redirect()->back();
     }
 
 

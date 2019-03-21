@@ -19,14 +19,32 @@
   <br />
 @endforeach
 </ul>
-<p><b>Note: </b> The ability to edit users does not yet exist</p>
+<!--<p><b>Note: </b> The ability to edit users does not yet exist</p>-->
 <br />
 <br />
 
+<h2>Subscriptions</h2>
+<ul>
+@foreach($subscriptions as $subscription)
+  <li>
+    <ul>
+      <li>UserID: {{$subscription->user_id}}</li>
+      <li>BookID: {{$subscription->book_id}}</li>
+      <li>Start Date: {{$subscription->start}}</li>
+      <li>End Date: {{$subscription->end}}</li>
+    </ul>
+    <a href="\editSubscription\{{$subscription->id}}">Edit</a>
+  </li>
+  <br />
+@endforeach
+</ul>
+<a href="\addSubscription">Add Subscription</a>
+<br />
+<br />
 <h2>Books</h2>
 <ul>
 @foreach($books as $book)
-  <a href="\book_details">
+  <a href="\book_details\{{$book->id}}">
     <li>{{$book->title}}</li>
   </a>
 @endforeach
