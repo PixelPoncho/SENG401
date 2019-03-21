@@ -6,6 +6,7 @@ use Redirect;
 use App\Subscription;
 use App\Book;
 use App\User;
+use App\HistoricalSubscriptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,6 +39,7 @@ class SubscriptionController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * create a new subscription, and add the subscription to historical subscriptions
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -51,6 +53,12 @@ class SubscriptionController extends Controller
       $sub -> user_id = $request->input('user_id');
       $sub -> book_id = $request->input('book_id');
       $sub->save();
+
+      $historicalSub = new HistoricalSubscriptions();
+      $historicalSub -> user_id = $request->input('user_id');
+      $historicalSub -> book_id = $request->input('book_id');
+      $historicalSub->save();
+
       return Redirect::to('admin');
     }
 
