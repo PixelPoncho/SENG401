@@ -7,6 +7,7 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BookController;
+use App\Book;
 
 class CommentController extends Controller
 {
@@ -100,11 +101,17 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+      $comment = Comment::find($id);
+      $commBookID = $comment->book_id;
+      $res=Comment::where('id',$id)->delete();
+
+      $book = Book::find($commBookID);
+        return view('book_details', [
+          'res' => $book,
+          'comments' => Comment::where('book_id', $commBookID)->get()
+        ]);
     }
 }

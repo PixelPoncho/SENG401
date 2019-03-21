@@ -41,7 +41,7 @@
 @foreach($comments as $comment)
 
 <li>{{ $comment->text }} <a href = '\commentEdit\{{$comment->id}}'> Edit </a></li>
-
+<p>     <p><a href = '\commentDestroy\{{$comment->id}}'> DELETE </a></li>
 @endforeach
 </ul>
 <br />
@@ -50,7 +50,7 @@
 <br />
 
 <!--EDIT BOOK FORM-->
-<p> UPDATE INFO </p>
+<h1> UPDATE INFO </h1>
 <form method="POST" action="/book_details/{{ $res->id }}">
   @csrf
   {{ method_field('PATCH') }}
@@ -69,4 +69,12 @@
     </div>
   </div>
 </form>
+
+<!--DELETE BOOK -->
+<h1> DELETE BOOK</h1>
+</ul>
+<br />
+<a href = "\destroyBook\{{$res->id}}"> DELETE BOOK!!!</a>
+<br />
+<br />
 @endsection

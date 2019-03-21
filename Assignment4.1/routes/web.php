@@ -23,6 +23,7 @@ Route::get('commentEdit/{id}', 'CommentController@edit');
 Route::get('commentAdd/{id}', 'CommentController@create');
 Route::post('commentAdd', 'CommentController@store');
 Route::patch('commentEdit', 'CommentController@update');
+Route::get('commentDestroy/{id}', 'CommentController@destroy');
 
 Route::get('addSubscription', 'SubscriptionController@create');
 Route::get('editSubscription/{id}', 'SubscriptionController@edit');
@@ -33,6 +34,7 @@ Route::get('/book_details/{id}', 'BookController@index');
 Route::patch('book_details/{id}', 'BookController@update');
 Route::post('bookAdd', 'BookController@store');
 Route::get('addBook', 'BookController@create');
+Route::get('destroyBook/{id}','BookController@destroy');
 
 Auth::routes();
 
