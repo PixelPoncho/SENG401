@@ -5,7 +5,7 @@
   <h2>Error</h2>
   <p>Sorry, only admin and subscribers can view this page</p>
 @endif
-@if((Auth::user()->role)=='admin' && (Auth::user()->role)=='subscriber')
+@if((Auth::user()->role)=='admin' || (Auth::user()->role)=='subscriber')
 
 <div class="container">
     <div class="row justify-content-center">

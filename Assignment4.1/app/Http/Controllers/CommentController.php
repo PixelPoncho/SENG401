@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Redirect;
 use App\Comment;
+use App\HistoricalSubscriptions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BookController;
@@ -44,13 +45,29 @@ class CommentController extends Controller
      */
     public function store(Request $request) //This $request field is the $_POST data
     {
-      $comment = new Comment();
-      $comment -> text = $request->input('text');
-      $comment -> user_id = $request->input('user_id');
-      $comment -> book_id = $request->input('book_id');
-      $comment->save();
-      return Redirect::to('book_details/'.$comment -> book_id); //When this line thows an error, figure out what include this file is missing
-    }
+
+        $status=HistoricalSubscriptions::where('user_id', '=', $request->input('user_id'))->where('book_id', '=', $request->input('book_id'))->first();
+
+    //    if(isset($status->user_id) and isset($status->product_id)){
+        if($status === null){
+      //  echo "cannot comment";
+          return Redirect::to('book_details/'.$request -> book_id);
+
+        }
+        else{
+          $comment = new Comment();
+          $comment -> text = $request->input('text');
+          $comment -> user_id = $request->input('user_id');
+          $comment -> book_id = $request->input('book_id');
+
+          $comment->save();
+          return Redirect::to('book_details/'.$comment -> book_id); //When this line thows an error, figure out what include this file is missing
+        }
+      }
+
+
+
+
 
     /**
      * Display the specified resource.
