@@ -13,11 +13,13 @@
 
                             <div class="col-md-6">
 
-                                Name:<input id="name" type="text" name="user_name" value = {{$user_name}} />
-                                Role:<input id="role" type="text" name="user_role" value = {{$user_role}} />
-                                <input type="hidden" name="user_id" value = {{$user_id}} />
-
-
+                                Name:<input id="name" type="text" name="name" value = {{$user_name}} />
+                                Role:<select name = "role">
+                                        <option value="admin">admin</option>
+                                        <option value="subscriber">subscriber</option>
+                                        <option value="visitor">visitor</option>
+                                      </select>
+                                      <input type="hidden" name="user_id" value = {{$user_id}} />
                             </div>
                         </div>
 
