@@ -1,7 +1,7 @@
 @extends('layouts.home')
 <!--EDIT THIS TO EXTEND book_details instead, and book_details to extend home-->
 @section('userSpecificContent')
-@if((Auth::user()->role)!='admin' || (Auth::user()->role)!='subscriber')
+@if((Auth::user()->role)!='admin' && (Auth::user()->role)!='subscriber')
   <h2>Error</h2>
   <p>Sorry, only admin and subscribers can view this page</p>
 @endif
