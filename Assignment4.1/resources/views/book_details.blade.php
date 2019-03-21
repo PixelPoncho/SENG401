@@ -20,7 +20,7 @@
 <br>
 <br>
 <p> UPDATE INFO </p>
-<form method="POST" action="/book_details/{{ $res->id }}">
+<form method="POST" action="/book_details/updateManual">
   @csrf
   {{ method_field('PATCH') }}
   <input type="text" name="id" value="{{$res->id}}" disabled>

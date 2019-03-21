@@ -34,6 +34,7 @@ Route::get('/subscriber', 'HomeController@subscriber');
 Route::get('/admin', 'HomeController@admin');
 
 Route::resource('book_details', 'BookController');
+Route::get('/book_details/updateManual','BookController@updateManual');
 //Route::get('/book_details/{id}','BookController@bookDetails');
 //Route::get('/book_edit/{id}','BookController@edit');
 //Route::resource('book_edit','BookController');
