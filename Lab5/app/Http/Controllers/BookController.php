@@ -28,9 +28,7 @@ class BookController extends Controller
   public function store(Request $request)
   {
     $book = Book::create([
-      'user_id' => $request->user()->id,
-      'title' => $request->title,
-      'description' => $request->description,
+      'name' => $request->name
     ]);
 
     return new BookResource($book);
@@ -49,6 +47,22 @@ class BookController extends Controller
   }
 
   /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+    $authors = Author::all();
+    return view('editForms.addBook', [ //Parent view requires name and role to be passed
+      'role' => Auth::user()->role,
+      'name' => Auth::user()->name,
+      'authors' => $authors
+      //'user_id' => Auth::user()->id,
+    ]);
+  }
+
+  /**
   * Update the specified resource in storage.
   *
   * @param  \Illuminate\Http\Request  $request
@@ -57,12 +71,8 @@ class BookController extends Controller
   */
   public function update(Request $request, Book $book)
   {
-    // check if currently authenticated user is the owner of the book
-    if ($request->user()->id !== $book->user_id) {
-      return response()->json(['error' => 'You can only edit your own books.'], 403);
-    }
 
-    $book->update($request->only(['title', 'description']));
+    $book->update($request->only(['name']));
 
     return new BookResource($book);
   }
