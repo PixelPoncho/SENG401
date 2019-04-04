@@ -18,6 +18,9 @@ use Illuminate\Http\Request;
 Route::apiResource('books', 'BookController');
 Route::post('books/{book}/ratings', 'RatingController@store');
 
+Route::apiResource('booksByISBN', 'BooksByISBNController');
+Route::apiResource('image', 'imageController');
+
 Route::apiResource('authors', 'AuthorController');
 Route::post('authors/{author}/books', 'BookController@store');
 

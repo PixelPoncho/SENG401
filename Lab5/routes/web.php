@@ -30,6 +30,8 @@ Route::get('editSubscription/{id}', 'SubscriptionController@edit');
 Route::post('addSubscription', 'SubscriptionController@store');
 Route::patch('editSubscription', 'SubscriptionController@update');
 
+//Route::get('/booksByISBN/{isbn}', 'BooksByISBNController@index');
+
 Route::get('/book_details/{id}', 'BookController@index');
 Route::patch('book_details/{id}', 'BookController@update');
 Route::post('bookAdd', 'BookController@store');
