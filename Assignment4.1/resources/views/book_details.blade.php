@@ -29,7 +29,7 @@
     <td>{{ $res->publicationYear }}</td>
     <td>{{ $res->publisher }}</td>
     <!--<td> {{ $res->localLinkToImage }}</td>-->
-    <td> <img src = "{{$res->localLinkToImage}}"/> </td>
+    <td> <img src = "{{$res->localLinkToImage}}" style="height:300px;width:300px;"/> </td>
   </tr>
 </table>
 <br />

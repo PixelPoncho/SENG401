@@ -1,0 +1,19 @@
+.button-container{
+    display:flex;
+    flex-direction: column;
+    width:50%;
+    margin:10;
+  }
+  #ajax-response{
+    display: flex;
+    width:100%;
+    margin: 10px auto;
+    height:auto;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+  }
+  .form-box{
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+  }

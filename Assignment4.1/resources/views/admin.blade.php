@@ -72,5 +72,102 @@
 <a href="\addAuthor">Add Author</a>
 </ul>
 
+<h2>AJAX Calls</h2>
+<ul>
+{{-- @foreach($authors as $author)
+    <li>{{$author->name}}</li>
+  <a href="\editAuthor\{{$author->id}}">Edit</a>
+@endforeach --}}
+
+
+
+
+{{--  
+  INSTRUCTIONS: The 4 functions below make GET requests to their assigned api routes
+  1) Change the API routes to reflect your actual APIs if needed
+  2) If you need to change the request type, replace GET with POST, or whatever
+--}}
+
+
+<div class="button-container">
+    <div class="form-group form-box">
+        <label for="getAllBooks">Get All Books</label>
+        <button id="getAllBooks" type="button" class="btn-success btn" onclick="getBooks()">Submit</button>
+    </div>
+    <div class="form-group form-box">
+        <label for="getAllAuthors">Get All Authors</label>
+        <button id="getAllAuthors" type="button" class="btn-info btn" onclick="getAuthors()">Submit</button>
+    </div>
+    <div class="form-group form-box">
+        <label for="book_id">Get Book by Book Id</label>
+        <input id="book_id" type="text" class="form-control" name="email">
+      <button type="button" class="btn-warning btn" onclick="getBooksByID()">Submit</button>
+    </div>
+    <div class="form-group form-box">
+        <label for="book_ISBN">Get Book by ISBN</label>
+        <input id="book_ISBN" type="text" class="form-control" name="email">
+        <button id="" type="button" class="btn-danger btn" onclick="getAttributesByISBN()">Submit</button>
+    </div>
+   
+</div>
+
+<div id="ajax-response">
+  {{-- AJAX RESPONSE RETURNS HERE --}}
+</div>
+
+<script>
+    //Get all books
+    function getBooks(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajax-response").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "/ajaxTest", true);
+        xhttp.send();
+    }
+    // Get all authors
+    function getAuthors(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajax-response").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "/api/authors", true);
+        xhttp.send();
+    }
+    // Get book image by id
+    function getBooksByID(){
+        var param = document.getElementById("book_id").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajax-response").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", `/api/books/${param}`, true);
+        xhttp.send();
+    }
+    //Get attributes by ISBN
+    function getAttributesByISBN(){
+        var xhttp = new XMLHttpRequest();
+        var param = document.getElementById("book_ISBN").value;
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajax-response").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", `/api/attributes/${param}`, true);
+        xhttp.send();
+    }
+</script>
+</div>
+<br />
+<br />
+<a href="#">Add Author</a>
+</ul>
+
 @endif
 @endsection
