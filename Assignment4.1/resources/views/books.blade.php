@@ -10,6 +10,8 @@
           <li>{{ $book }}</li>
         @endforeach
       </ul>
+
+      
   </div>
 </div>
 @endsection
