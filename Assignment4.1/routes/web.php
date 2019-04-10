@@ -19,6 +19,10 @@ Route::get('books', function (){
   return view('books');
 });
 
+Route::get('ajaxTest',function(){
+  return view('admin_AJAX');
+});
+
 Route::get('commentEdit/{id}', 'CommentController@edit');
 Route::get('commentAdd/{id}', 'CommentController@create');
 Route::post('commentAdd', 'CommentController@store');
