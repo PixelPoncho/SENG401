@@ -11,9 +11,13 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+      $account = Account::find($id);
+        return view(
+          //All the data from the account and transactions need passed to the view
+        );
+
     }
 
     /**
@@ -23,7 +27,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        return view();
     }
 
     /**
@@ -32,9 +36,15 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     //NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
     public function store(Request $request)
     {
-        //
+      $account = new Account();
+      $account -> type = $request->input('type');
+      $account -> user_id = $request->input('user_id');
+      $account -> balance = 0;
+      $account->save();
+      return Redirect::to('home');
     }
 
     /**
@@ -45,7 +55,12 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        //Show account details, plus each transaction associated with the account
+        $account = Account::find($id);
+          return view('account_details', [
+            'account' => $account,
+            'transactions' => Transaction::where('account_id', $id)->get()
+          ]);
     }
 
     /**
@@ -54,9 +69,10 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+     //NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
+    public function edit(Account $account)
     {
-        //
+      return view('account_details.edit', compact('account'))->with('res', $account);
     }
 
     /**
@@ -66,9 +82,11 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+      //NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
     public function update(Request $request, $id)
     {
-        //
+      Account::where('id', $id)->update($request->except(['_token', '_method']));
+      return redirect();
     }
 
     /**
@@ -79,6 +97,8 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Ensure account has $0, then...
+        $res=Account::where('id',$id)->delete();
+        return view('home');
     }
 }
