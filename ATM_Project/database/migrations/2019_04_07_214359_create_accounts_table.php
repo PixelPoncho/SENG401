@@ -15,7 +15,7 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('userID');
+            $table->bigInteger('userID')->unsigned();
             $table->enum('type', array('chequing', 'savings', 'investment', 'tfsa'));
             $table->bigInteger('balance');
             $table->timestamp('open_date');
