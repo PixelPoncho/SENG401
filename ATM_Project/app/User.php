@@ -14,7 +14,7 @@ class User extends Authenticatable
       return $this->hasMany('App\Transaction');
     }
     public function account(){
-      return $this->hasOne('App\Transaction');
+      return $this->hasOne('App\Account');
     }
     /**
      * The attributes that are mass assignable.

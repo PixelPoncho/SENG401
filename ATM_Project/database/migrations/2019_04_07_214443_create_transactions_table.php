@@ -23,6 +23,9 @@ class CreateTransactionsTable extends Migration
             $table->timestamp('date');
             $table->boolean('valid');
             $table->timestamps();
+
+            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

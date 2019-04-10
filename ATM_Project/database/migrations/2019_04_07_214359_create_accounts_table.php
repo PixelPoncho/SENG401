@@ -20,6 +20,8 @@ class CreateAccountsTable extends Migration
             $table->bigInteger('balance');
             $table->timestamp('open_date');
             $table->timestamps();
+
+            $table->foreign('userID')->references('id')->on('users');
         });
     }
 
