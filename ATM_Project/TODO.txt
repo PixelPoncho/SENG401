@@ -2,6 +2,7 @@ Complete:
 - Created default Laravel authentication
 - Created User, Account, and Transaction classes, along with controllers
 - Created some views for a home page (accounts), and view specific account page (transactions)
+- Set up AWS
 
 Some things that still need doing:
 - Filling out User, Account, and Transaction migrations and classes with data and relationships
@@ -10,7 +11,6 @@ will be assigned to user and must be used to login
 - Making the views functional
 - Implement CRUD methods in all controllers
 - Implement Auth0 authentication, and implement strong password requirements
-- Connect the project to AWS
-- Create interfaces for transfers between accounts, deposits, withdrawals, creating new accounts
+- Create GUI for transfers between accounts, deposits, withdrawals, creating new accounts
 - DO ME LAST: Investigate database security practices and more sessions security features
  (timeout on no activity, ensuring all data taken from the user is verified, ensuring recieving ends of forms can't break with html tampering, etc )
