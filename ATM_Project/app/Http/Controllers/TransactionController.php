@@ -90,13 +90,38 @@ class TransactionController extends Controller
   {
     $account = Account::find($id);
     $withdraw = $request ->input('withdraw');
-    return view('home');
+    $ldate = date('Y-m-d H:i:s');
+    $balance = $account -> balance;
+    if($balance-$withdraw <0){
+      echo $balance;
+      echo " \n ";
+      echo $withdraw;
+      echo " \n ";
+      echo $balance-$withdraw;
+      echo " \n ";
+      echo "not enough funds";
+    }else{
+      $transaction = new Transaction();
+      $account -> balance = $account -> balance -$withdraw;
+      $account->save();
+      echo $balance;
+      echo " \n ";
+      echo $withdraw;
+      echo " \n ";
+      echo $balance-$withdraw;
+      echo " \n ";
+      echo "yes enough funds";
+    }
+
   }
 
   public function deposit(Request $request, $id)
   {
     $account = Account::find($id);
     $deposit = $request -> input('deposit');
+    $ldate = date('Y-m-d H:i:s');
+
+
     return view('home');
 
   }
@@ -105,6 +130,9 @@ class TransactionController extends Controller
     $account = Account::find($id);
     $transferAmount = $request ->input('transferAmount');
     $transferRecipient = $request ->input('transferRecipient');
+    $ldate = date('Y-m-d H:i:s');
+
+
     return view('home');
 
   }
