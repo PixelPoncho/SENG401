@@ -20,7 +20,7 @@ class AccountController extends Controller
     {
 
       $account = Account::find($id);
-      $test = Account::where('userID', Auth::user()->id)->get();
+      //$test = Account::where('userID', Auth::user()->id)->get();
 
       //dd($test);
       //$transactions = Transaction::find($id);

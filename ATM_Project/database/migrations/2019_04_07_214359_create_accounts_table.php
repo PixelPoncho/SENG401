@@ -19,7 +19,8 @@ class CreateAccountsTable extends Migration
             $table->enum('type', array('chequing', 'savings', 'investment', 'tfsa'));
             $table->bigInteger('balance');
             $table->timestamp('open_date')->nullable();
-
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->foreign('userID')->references('id')->on('users');
         });
     }
