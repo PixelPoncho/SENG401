@@ -157,13 +157,48 @@ class TransactionController extends Controller
   }
   public function transfer(Request $request, $id)
   {
-    $account = Account::find($id);
+    $account1 = Account::find($id);
+    $user1 = User::find($account1->userID);
     $transferAmount = $request ->input('transferAmount');
-    $transferRecipient = $request ->input('transferRecipient');
+    $account2 = $request ->input('transferRecipient');
     $ldate = date('Y-m-d H:i:s');
 
+    $balance1 = $account1 -> balance;
+    $balance2 = $account2 -> balance;
+    if($balance1-$transferAmount <0){
+      echo "NOT enough funds";
+    }else{
+      $account1 -> balance = $account1 -> balance -$transferAmount;
+      $account1->save();
 
-    return view('home');
+      $transaction = new Transaction();
+      $transaction -> account_id = $account1 -> id;
+      $transaction -> user_id = $user1 -> id;
+      $transaction -> old_balance = $balance1;
+      $transaction -> change = 0 -$transferAmount;
+      $transaction -> new_balance = $account1 -> balance;
+      $transaction -> date = $ldate;
+      $transaction -> valid = true;
+      $transaction ->save();
+      ////////////////////////////////////////////////////////
+      ///////////////////////////////////////////////////////
+      $account2 -> balance = $account2 -> balance + $transferAmount;
+      $account2->save();
+
+      $transaction = new Transaction();
+      $transaction -> account_id = $account2 -> id;
+      $transaction -> user_id = $user2 -> id;
+      $transaction -> old_balance = $balance2;
+      $transaction -> change = $transferAmount;
+      $transaction -> new_balance = $account2 -> balance;
+      $transaction -> date = $ldate;
+      $transaction -> valid = true;
+      $transaction ->save();
+      echo "yes enough funds";
+
+    }
+
+  }
 
   }
 
