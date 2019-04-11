@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use Illuminate\Http\Request;
 use App\Account;
 use App\User;
 use App\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -124,7 +126,11 @@ class TransactionController extends Controller
       echo "yes enough funds";
 
     }
-
+return view('account_details', [
+  'account' => $account,
+  'transactions' => Transaction::where('account_id', $id)->get(),
+  'otherAccounts' => Account::where('userID', Auth::user()->id)->get()
+]);
   }
 
   public function deposit(Request $request, $id)
@@ -153,7 +159,11 @@ class TransactionController extends Controller
     echo $balance+$deposit;
     echo " new\n ";
     echo "added funds";
-
+    return view('account_details', [
+      'account' => $account,
+      'transactions' => Transaction::where('account_id', $id)->get(),
+      'otherAccounts' => Account::where('userID', Auth::user()->id)->get()
+    ]);
   }
   public function transfer(Request $request, $id)
   {
@@ -206,7 +216,11 @@ class TransactionController extends Controller
       echo "yes enough funds";
 
     }
-
+    return view('account_details', [
+      'account' => Account::find($id),
+      'transactions' => Transaction::where('account_id', $id)->get(),
+      'otherAccounts' => Account::where('userID', Auth::user()->id)->get()
+    ]);
   }
 
 

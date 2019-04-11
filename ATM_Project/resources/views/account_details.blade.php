@@ -82,25 +82,34 @@
       <div class="card">
         <div class="card-header">Transaction History</div>
         <div class="card-container">
-          <table>
-            <tr>
-              <th>old_balance: </th>
-              <th>change: </th>
-              <th>new_balance: </th>
-              <th>date: </th>
-              <th>valid: </th>
-            </tr>
-            @foreach($transactions as $transaction)
-            <tr>
-              <th>{{ $transaction->old_balance }}</th>
-              <th>{{ $transaction->change }}</th>
-              <th>{{ $transaction->new_balance }}</th>
-              <th>date: {{ $transaction->date }}</th>
-              <th>valid: {{ $transaction->valid }}</th>
-            </tr>
-            @endforeach
+          <div cass="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>old_balance: </th>
+                  <th>change: </th>
+                  <th>new_balance: </th>
+                  <th>date: </th>
+                  <th>valid: </th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($transactions as $transaction)
+                <tr>
+                  <th>{{ $transaction->old_balance }}</th>
+                  <th>{{ $transaction->change }}</th>
+                  <th>{{ $transaction->new_balance }}</th>
+                  <th>date: {{ $transaction->date }}</th>
+                  <th>valid: {{ $transaction->valid }}</th>
+                </tr>
+                @endforeach
+              </tbody>
 
-          </table>
+
+
+            </table>
+          </div>
+
           <br />
           <br />
         </div>
