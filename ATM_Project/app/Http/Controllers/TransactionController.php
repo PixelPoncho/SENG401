@@ -84,9 +84,9 @@ class TransactionController extends Controller
   {
     //
   }
-  ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
   //new funcs below
-  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////
   public function withdraw(Request $request, $id)
   {
     $account = Account::find($id);
@@ -122,6 +122,7 @@ class TransactionController extends Controller
       echo $balance-$withdraw;
       echo " new\n ";
       echo "yes enough funds";
+
     }
 
   }
