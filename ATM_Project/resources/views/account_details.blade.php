@@ -64,26 +64,66 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">Transaction History</div>
-        <div class="card-container">
-          <table>
-            <tr>
-              <th>old_balance: </th>
-              <th>change: </th>
-              <th>new_balance: </th>
-              <th>date: </th>
-              <th>valid: </th>
-            </tr>
-            @foreach($transactions as $transaction)
-            <tr>
-              <th>{{ $transaction->old_balance }}</th>
-              <th>{{ $transaction->change }}</th>
-              <th>{{ $transaction->new_balance }}</th>
-              <th>date: {{ $transaction->date }}</th>
-              <th>valid: {{ $transaction->valid }}</th>
-            </tr>
-            @endforeach
+        <div class="table-container">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Old Balance</th>
+                      <th>Change</th>
+                      <th>New Balance</th>
+                      <th>Date</th>
+                      <th>Valid</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-          </table>
+
+                  {{-- @foreach($transactions as $transaction)
+                  <tr>
+                    <th>{{ $transaction->old_balance }}</th>
+                    <th>{{ $transaction->change }}</th>
+                    <th>{{ $transaction->new_balance }}</th>
+                    <th>date: {{ $transaction->date }}</th>
+                    <th>valid: {{ $transaction->valid }}</th>
+                  </tr>
+                  @endforeach --}}
+
+                  {{-- UNCOMMENT BELOW FOR TESTING PURPOSES --}}
+
+                  <tr>
+                    <th>'1490'</th>
+                    <th>'10'</th>
+                    <th>'1500'</th>
+                    <th>'2019/09/12'</th>
+                    <th>'true'</th>
+                  </tr>
+                  <tr>
+                      <th>'1490'</th>
+                      <th>'10'</th>
+                      <th>'1500'</th>
+                      <th>'2019/09/12'</th>
+                      <th>'true'</th>
+                    </tr>
+                    <tr>
+                        <th>'1490'</th>
+                        <th>'10'</th>
+                        <th>'1500'</th>
+                        <th>'2019/09/12'</th>
+                        <th>'true'</th>
+                      </tr>
+                      <tr>
+                          <th>'1490'</th>
+                          <th>'10'</th>
+                          <th>'1500'</th>
+                          <th>'2019/09/12'</th>
+                          <th>'true'</th>
+                        </tr>
+
+                  </tbody>
+                </table>
+          </div>
+          
           <br />
           <br />
         </div>

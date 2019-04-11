@@ -33,3 +33,12 @@ body{
    
     width:98%;
 }
+.table-responsive{
+    overflow-x: scroll;
+    height:220px;
+}
+.table-cointainer{
+    display:flex;
+    flex-direction: row;   
+    margin-top:0px!important;
+}
