@@ -14,6 +14,9 @@
           </div>
           @endif
           <div class="account-balance">
+            <h2>Account Type:</h2>
+            <h1>{{ $account->type }}</h1>
+            <br>
             <h2>Account Balance:</h2>
             <h1>{{ $account->balance }}</h1>
           </div>
