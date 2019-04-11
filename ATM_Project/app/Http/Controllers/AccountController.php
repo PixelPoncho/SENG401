@@ -40,14 +40,13 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     //NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
     public function store(Request $request)
     {
       $account = new Account();
       $account -> type = $request->input('type');
-      $account -> user_id = $request->input('user_id');
-      $account -> balance = $request->input('balance');
-      $account -> open_date =  $request->input('open_date');
+      $account -> user_id = Auth::user()->role;
+      $account -> balance = 0;
+      $account -> open_date =  date("Y-m-d");
       $account->save();
       return view('home');
     }
