@@ -1,0 +1,35 @@
+body{
+    background-color:#217DC7;
+}
+.account-balance{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+.account-balance h1{
+    padding:10px;
+    color:goldenrod;
+
+}
+.card{
+    margin-top:10px;
+}
+.btn{
+    margin-top:10px;
+    width:100%;
+}
+
+.card-container{
+    display:flex;
+    flex-direction: row;   
+    margin-top:20px; 
+}
+.box-container{
+   
+    display:flex;
+    flex-direction: row;
+}
+.box-container input{
+   
+    width:98%;
+}

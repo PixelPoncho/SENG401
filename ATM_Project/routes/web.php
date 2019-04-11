@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/account_details/{id}', 'AccountController@index');
+Route::patch('account_details/{id}', 'AccountController@update');
