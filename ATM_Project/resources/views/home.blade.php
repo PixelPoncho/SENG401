@@ -3,9 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">DEPRECATED Account Dashboard</div>
+                <div class="card-header">
+                    Dashboard
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,51 +15,23 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="account-balance">
-                        <h2>Account Balance:</h2>
-                        <h1>$1,000,000</h1>
-                    </div>
 
-
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Account Actions</div>
-                  <div class="card-container">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="withdraw">Withdraw ammount:</label>
-                            <input type="text" class="form-control" id="withdraw">
-                            <button class="btn btn-warning">Submit</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="withdraw">Deposit ammount:</label>
-                            <input type="text" class="form-control" id="deposit">
-                            <button class="btn btn-warning">Submit</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="box-container">
-                                        <div class="box">
-                                                <label for="withdraw">Transfer ammount:</label>
-                                                <input type="text" class="form-control" id="transfer">
-                                        </div>
-                                        <div class="box">
-                                                <label for="withdraw">Recepient</label>
-                                                <input type="text" class="form-control" id="transfer">
-                                        </div>
+                    <div class="card">
+                        <div class="card-header">Accounts</div>
+                          <div class="card-container">
+                            <div class="col-md-4">
+                              @foreach($accounts as $account)
+                                <div class="form-group">
+                                    <p style="">
+                                    <b>{{$account->type}}: &nbsp&nbsp</b>${{$account->balance}}</p>
+                                    <form method="GET" action="/account_details/{{ $account->id }}">
+                                    <button type="submit" class="btn btn-warning" >View Account</button>
                                 </div>
-
-                                <button class="btn btn-warning">Submit</button>
+                              @endforeach
                             </div>
-                        </div>
-                  </div>
+                          </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
