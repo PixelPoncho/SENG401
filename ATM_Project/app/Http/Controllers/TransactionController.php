@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Transaction;
 use Illuminate\Http\Request;
 use App\Account;
+use App\User;
+use App\Transaction;
 
 class TransactionController extends Controller
 {
@@ -83,21 +84,75 @@ class TransactionController extends Controller
   {
     //
   }
-  ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
   //new funcs below
-  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////
   public function withdraw(Request $request, $id)
   {
     $account = Account::find($id);
+    $user = User::find($account->userID);
     $withdraw = $request ->input('withdraw');
-    return view('home');
+    $ldate = date('Y-m-d H:i:s');
+    $balance = $account -> balance;
+    if($balance-$withdraw <0){
+      echo $balance;
+      echo " old \n ";
+      echo $withdraw;
+      echo " change \n ";
+      echo $balance-$withdraw;
+      echo " new\n ";
+      echo "NOT enough funds";
+    }else{
+      $account -> balance = $account -> balance -$withdraw;
+      $account->save();
+
+      $transaction = new Transaction();
+      $transaction -> account_id = $account -> id;
+      $transaction -> user_id = $user -> id;
+      $transaction -> old_balance = $balance;
+      $transaction -> change = $withdraw;
+      $transaction -> new_balance = $account -> balance;
+      $transaction -> date = $ldate;
+      $transaction -> valid = true;
+      $transaction ->save();
+      echo $balance;
+      echo " old \n ";
+      echo $withdraw;
+      echo " change \n ";
+      echo $balance-$withdraw;
+      echo " new\n ";
+      echo "yes enough funds";
+
+    }
+
   }
 
   public function deposit(Request $request, $id)
   {
     $account = Account::find($id);
-    $deposit = $request -> input('deposit');
-    return view('home');
+    $user = User::find($account->userID);
+    $deposit = $request ->input('deposit');
+    $ldate = date('Y-m-d H:i:s');
+    $balance = $account -> balance;
+    $account -> balance = $account -> balance + $deposit;
+    $account->save();
+
+    $transaction = new Transaction();
+    $transaction -> account_id = $account -> id;
+    $transaction -> user_id = $user -> id;
+    $transaction -> old_balance = $balance;
+    $transaction -> change = $deposit;
+    $transaction -> new_balance = $account -> balance;
+    $transaction -> date = $ldate;
+    $transaction -> valid = true;
+    $transaction ->save();
+    echo $balance;
+    echo " old \n ";
+    echo $deposit;
+    echo " change \n ";
+    echo $balance+$deposit;
+    echo " new\n ";
+    echo "added funds";
 
   }
   public function transfer(Request $request, $id)
@@ -105,6 +160,9 @@ class TransactionController extends Controller
     $account = Account::find($id);
     $transferAmount = $request ->input('transferAmount');
     $transferRecipient = $request ->input('transferRecipient');
+    $ldate = date('Y-m-d H:i:s');
+
+
     return view('home');
 
   }

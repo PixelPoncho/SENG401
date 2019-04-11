@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Account;
+use App\User;
+use App\Transaction;
 
 class AccountController extends Controller
 {
