@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">DEPRECATED Account Dashboard</div>
+                <div class="card-header">Account Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,7 +15,7 @@
                     @endif
                     <div class="account-balance">
                         <h2>Account Balance:</h2>
-                        <h1>$1,000,000</h1>
+                        <h1>{{ $account->balance }}</h1>
                     </div>
 
 
