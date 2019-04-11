@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Redirect;
 use Illuminate\Http\Request;
-use App\Account;
-use App\Transaction;
-use Illuminate\Support\Facades\Auth;
+
 
 class AccountController extends Controller
 {
@@ -17,6 +14,7 @@ class AccountController extends Controller
      */
     public function index($id)
     {
+
       $account = Account::find($id);
       //$transactions = Transaction::find($id);
       return view('account_details', [
@@ -42,7 +40,7 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     //TODO: NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
+     //NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
     public function store(Request $request)
     {
       $account = new Account();
@@ -76,7 +74,7 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     //TODO: NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
+     //NATHAN COPIED AND PASTED THIS FROM THE LAST ASSIGNMENT
     public function edit(Account $account)
     {
       return view('account_details.edit', compact('account'))->with('res', $account);
