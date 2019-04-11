@@ -19,5 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/add_account', 'AccountController@store');
+
 Route::get('/account_details/{id}', 'AccountController@index');
 Route::patch('account_details/{id}', 'AccountController@update');
+
+Route::post('withdraw/{id}', 'TransactionController@withdraw');
+Route::post('deposit/{id}', 'TransactionController@deposit');
+Route::post('transfer/{id}', 'TransactionController@transfer');

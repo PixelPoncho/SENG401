@@ -31,7 +31,7 @@
         <div class="card-header">Account Actions</div>
         <div class="card-container">
           <div class="col-md-4">
-            <form method="POST" action="\withdraw">
+            <form method="POST" action="\withdraw\{{ $account->id }}">
               @csrf
               <div class="form-group">
                 <label for="withdraw">Withdraw ammount:</label>
@@ -42,7 +42,7 @@
           </div>
 
           <div class="col-md-4">
-            <form method="POST" action="\deposit">
+            <form method="POST" action="\deposit\{{ $account->id }}">
               @csrf
               <div class="form-group">
                 <label for="deposit">Deposit ammount:</label>
@@ -53,7 +53,7 @@
           </div>
 
           <div class="col-md-4">
-            <form method="POST" action="\transfer">
+            <form method="POST" action="\transfer\{{ $account->id }}">
               @csrf
               <div class="form-group">
                 <div class="box-container">
@@ -63,7 +63,11 @@
                   </div>
                   <div class="box">
                     <label for="transferRecipient">Recepient</label>
-                    <input type="text" class="form-control" id="transferRecipient" name="transferRecipient" required>
+                    <select class="form-control" id="transferRecipient" name="transferRecipient" required>
+                      @foreach($otherAccounts as $account)
+                        <option value="{{$account->id}}">{{$account->type}} ({{$account->balance}})</option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
                 <button class="btn btn-warning">Submit</button>
