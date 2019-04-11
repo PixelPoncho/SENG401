@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Account;
 use App\User;
 use App\Transaction;
@@ -18,10 +20,14 @@ class AccountController extends Controller
     {
 
       $account = Account::find($id);
+      $test = Account::where('userID', Auth::user()->id)->get();
+
+      //dd($test);
       //$transactions = Transaction::find($id);
       return view('account_details', [
         'account' => $account,
-        'transactions' => Transaction::where('account_id', $id)->get()
+        'transactions' => Transaction::where('account_id', $id)->get(),
+        'otherAccounts' => Account::where('userID', Auth::user()->id)->get()
       ]);
       //All the data from the account and transactions need passed to the view
     }
@@ -44,13 +50,13 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-      $account = new Account();
+      $account = new \App\Account();
       $account -> type = $request->input('type');
-      $account -> user_id = Auth::user()->role;
+      $account -> userID = Auth::user()->id;
       $account -> balance = 0;
       $account -> open_date =  date("Y-m-d");
       $account->save();
-      return view('home');
+      return Redirect::to('home');
     }
 
     /**
