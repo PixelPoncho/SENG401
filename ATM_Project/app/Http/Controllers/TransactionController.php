@@ -110,7 +110,7 @@ class TransactionController extends Controller
       $transaction -> account_id = $account -> id;
       $transaction -> user_id = $user -> id;
       $transaction -> old_balance = $balance;
-      $transaction -> change = $withdraw;
+      $transaction -> change = 0 -$withdraw;
       $transaction -> new_balance = $account -> balance;
       $transaction -> date = $ldate;
       $transaction -> valid = true;
