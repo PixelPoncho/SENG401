@@ -130,11 +130,29 @@ class TransactionController extends Controller
   public function deposit(Request $request, $id)
   {
     $account = Account::find($id);
-    $deposit = $request -> input('deposit');
+    $user = User::find($account->userID);
+    $deposit = $request ->input('deposit');
     $ldate = date('Y-m-d H:i:s');
+    $balance = $account -> balance;
+    $account -> balance = $account -> balance + $deposit;
+    $account->save();
 
-
-    return view('home');
+    $transaction = new Transaction();
+    $transaction -> account_id = $account -> id;
+    $transaction -> user_id = $user -> id;
+    $transaction -> old_balance = $balance;
+    $transaction -> change = $deposit;
+    $transaction -> new_balance = $account -> balance;
+    $transaction -> date = $ldate;
+    $transaction -> valid = true;
+    $transaction ->save();
+    echo $balance;
+    echo " old \n ";
+    echo $deposit;
+    echo " change \n ";
+    echo $balance+$deposit;
+    echo " new\n ";
+    echo "added funds";
 
   }
   public function transfer(Request $request, $id)
