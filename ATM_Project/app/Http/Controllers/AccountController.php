@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class AccountController extends Controller
@@ -42,13 +44,13 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-      $account = new Account();
+      $account = new \App\Account();
       $account -> type = $request->input('type');
-      $account -> user_id = Auth::user()->role;
+      $account -> userID = Auth::user()->id;
       $account -> balance = 0;
       $account -> open_date =  date("Y-m-d");
       $account->save();
-      return view('home');
+      return Redirect::to('home');
     }
 
     /**

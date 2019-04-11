@@ -36,6 +36,7 @@
                               <br />
                               <br />
                                     <form method="POST" action="/add_account">
+                                      @csrf
                                       <select name="type">
                                         <option value="chequing">Chequing</option>
                                         <option value="savings">Savings</option>
