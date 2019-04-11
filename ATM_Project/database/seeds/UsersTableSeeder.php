@@ -11,10 +11,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-      $data = file_get_contents("https://randomuser.me/api/?results=1000&inc=name,email,login");
+      $data = file_get_contents("https://randomuser.me/api/?results=100&nat=us&inc=name,email,login&seed=seng401");
         $data = json_decode($data, true);
 
-      for($x = 0; $x < 1000; $x++){
+      for($x = 0; $x < 100; $x++){
     //   $data = json_decode($data);
 
         DB::table('users')->insert([
