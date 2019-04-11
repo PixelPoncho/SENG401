@@ -21,7 +21,7 @@ class AccountController extends Controller
       //$transactions = Transaction::find($id);
       return view('account_details', [
         'account' => $account,
-        'transactions' => Transaction::where('user_id', $id)->get()
+        'transactions' => Transaction::where('account_id', $id)->get()
       ]);
       //All the data from the account and transactions need passed to the view
     }
