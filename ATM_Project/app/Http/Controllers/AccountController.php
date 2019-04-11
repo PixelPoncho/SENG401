@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class AccountController extends Controller
 {
     /**
@@ -13,6 +14,7 @@ class AccountController extends Controller
      */
     public function index($id)
     {
+
       $account = Account::find($id);
       //$transactions = Transaction::find($id);
       return view('account_details', [
