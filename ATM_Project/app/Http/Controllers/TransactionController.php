@@ -89,24 +89,23 @@ class TransactionController extends Controller
   public function withdraw(Request $request, $id)
   {
     $account = Account::find($id);
-    $withdraw = $request -> ->input('withdraw');
-
-
+    $withdraw = $request ->input('withdraw');
+    return view('home');
   }
 
   public function deposit(Request $request, $id)
   {
     $account = Account::find($id);
-    $deposit = $request -> ->input('deposit');
-
+    $deposit = $request -> input('deposit');
+    return view('home');
 
   }
   public function transfer(Request $request, $id)
   {
     $account = Account::find($id);
-    $transferAmount = $request -> ->input('transferAmount');
-    $transferRecipient = $request -> ->input('transferRecipient');
-
+    $transferAmount = $request ->input('transferAmount');
+    $transferRecipient = $request ->input('transferRecipient');
+    return view('home');
 
   }
 
