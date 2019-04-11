@@ -20,10 +20,14 @@ class AccountController extends Controller
     {
 
       $account = Account::find($id);
+      $test = Account::where('userID', Auth::user()->id)->get();
+
+      //dd($test);
       //$transactions = Transaction::find($id);
       return view('account_details', [
         'account' => $account,
-        'transactions' => Transaction::where('account_id', $id)->get()
+        'transactions' => Transaction::where('account_id', $id)->get(),
+        'otherAccounts' => Account::where('userID', Auth::user()->id)->get()
       ]);
       //All the data from the account and transactions need passed to the view
     }

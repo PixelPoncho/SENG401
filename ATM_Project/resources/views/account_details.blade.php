@@ -63,7 +63,11 @@
                   </div>
                   <div class="box">
                     <label for="transferRecipient">Recepient</label>
-                    <input type="text" class="form-control" id="transferRecipient" name="transferRecipient" required>
+                    <select class="form-control" id="transferRecipient" name="transferRecipient" required>
+                      @foreach($otherAccounts as $account)
+                        <option value="{{$account->id}}">{{$account->type}} ({{$account->balance}})</option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
                 <button class="btn btn-warning">Submit</button>
