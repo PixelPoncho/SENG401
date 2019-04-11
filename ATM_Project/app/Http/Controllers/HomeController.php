@@ -24,10 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $all_accounts = \App\Account::all();
-      $accounts = $all_accounts->where('user_id', Auth::user()->role);
         return view('home', [
-          'accounts' => $accounts,
+          'accounts' => Account::where('userID', Auth::user()->id)->get()
           //'transactions' => \App\Transaction::where('account_id', $accounts->first())->get()
         ]);
     }
