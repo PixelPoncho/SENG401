@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-      $data = file_get_contents("https://randomuser.me/api/?results=100&inc=name,email,login&seed=seng401");
+      $data = file_get_contents("https://randomuser.me/api/?results=100&nat=us&inc=name,email,login&seed=seng401");
         $data = json_decode($data, true);
 
       for($x = 0; $x < 100; $x++){
