@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Account Dashboard</div>
+                <div class="card-header">DEPRECATED Account Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -18,8 +18,8 @@
                         <h1>$1,000,000</h1>
                     </div>
 
-                   
-                   
+
+
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
                                                 <input type="text" class="form-control" id="transfer">
                                         </div>
                                 </div>
-                                
+
                                 <button class="btn btn-warning">Submit</button>
                             </div>
                         </div>
