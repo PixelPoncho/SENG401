@@ -159,12 +159,18 @@ class TransactionController extends Controller
   {
     $account1 = Account::find($id);
     $user1 = User::find($account1->userID);
+
     $transferAmount = $request ->input('transferAmount');
-    $account2 = $request ->input('transferRecipient');
+
+    $id2 = $request ->input('transferRecipient');
+    $account2 = Account::find($id2);
+    $user2 = User::find($account2->userID);
+
     $ldate = date('Y-m-d H:i:s');
 
     $balance1 = $account1 -> balance;
-    $balance2 = $account2 -> balance;
+    // $balance2 = $account2 -> balance;
+
     if($balance1-$transferAmount <0){
       echo "NOT enough funds";
     }else{
@@ -182,6 +188,9 @@ class TransactionController extends Controller
       $transaction ->save();
       ////////////////////////////////////////////////////////
       ///////////////////////////////////////////////////////
+      $account2 = Account::find($id2); //incase same account...
+      $balance2 = $account2 -> balance;
+
       $account2 -> balance = $account2 -> balance + $transferAmount;
       $account2->save();
 
@@ -200,7 +209,6 @@ class TransactionController extends Controller
 
   }
 
-  }
 
 
 }
