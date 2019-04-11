@@ -30,6 +30,24 @@
                               @endforeach
                             </div>
                           </div>
+                          <div class="card-container">
+                            <div class="col-md-4">
+                              <br />
+                              <br />
+                                    <form method="POST" action="/add_account">
+                                      <select name="type">
+                                        <option value="chequing">Chequing</option>
+                                        <option value="savings">Savings</option>
+                                        <option value="investment">Investment</option>
+                                        <option value="tfsa">TFSA</option>
+                                      </select>
+                                    <button type="submit" class="btn btn-warning" >New Account</button>
+                                    <br />
+                                    <br />
+                                </div>
+
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>
