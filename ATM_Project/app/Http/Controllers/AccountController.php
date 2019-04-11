@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Account;
+use App\User;
+use App\Transaction;
 
 class AccountController extends Controller
 {

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Transaction;
 use Illuminate\Http\Request;
 use App\Account;
+use App\User;
+use App\Transaction;
 
 class TransactionController extends Controller
 {
@@ -89,27 +90,37 @@ class TransactionController extends Controller
   public function withdraw(Request $request, $id)
   {
     $account = Account::find($id);
+    $user = User::find($account->userID);
     $withdraw = $request ->input('withdraw');
     $ldate = date('Y-m-d H:i:s');
     $balance = $account -> balance;
     if($balance-$withdraw <0){
       echo $balance;
-      echo " \n ";
+      echo " old \n ";
       echo $withdraw;
-      echo " \n ";
+      echo " change \n ";
       echo $balance-$withdraw;
-      echo " \n ";
-      echo "not enough funds";
+      echo " new\n ";
+      echo "NOT enough funds";
     }else{
-      $transaction = new Transaction();
       $account -> balance = $account -> balance -$withdraw;
       $account->save();
+
+      $transaction = new Transaction();
+      $transaction -> account_id = $account -> id;
+      $transaction -> user_id = $user -> id;
+      $transaction -> old_balance = $balance;
+      $transaction -> change = $withdraw;
+      $transaction -> new_balance = $account -> balance;
+      $transaction -> date = $ldate;
+      $transaction -> valid = true;
+      $transaction ->save();
       echo $balance;
-      echo " \n ";
+      echo " old \n ";
       echo $withdraw;
-      echo " \n ";
+      echo " change \n ";
       echo $balance-$withdraw;
-      echo " \n ";
+      echo " new\n ";
       echo "yes enough funds";
     }
 
