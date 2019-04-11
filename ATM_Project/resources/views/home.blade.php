@@ -26,6 +26,7 @@
                                     <b>{{$account->type}}: &nbsp&nbsp</b>${{$account->balance}}</p>
                                     <form method="GET" action="/account_details/{{ $account->id }}">
                                     <button type="submit" class="btn btn-warning" >View Account</button>
+                                  </form>
                                 </div>
                               @endforeach
                             </div>
@@ -41,7 +42,8 @@
                                         <option value="investment">Investment</option>
                                         <option value="tfsa">TFSA</option>
                                       </select>
-                                    <button type="submit" class="btn btn-warning" >New Account</button>
+                                    <button type="submit" class="btn btn-warning">New Account</button>
+                                  </form>
                                     <br />
                                     <br />
                                 </div>
