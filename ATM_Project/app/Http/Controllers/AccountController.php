@@ -48,9 +48,11 @@ class AccountController extends Controller
       $account = new Account();
       $account -> type = $request->input('type');
       $account -> user_id = $request->input('user_id');
-      $account -> balance = 0;
+      $account -> balance = $request->input('balance');
+      $account -> type =  $request->input('type');
+      $account -> open_date =  $request->input('open_date');
       $account->save();
-      return Redirect::to('home');
+      return view('home');
     }
 
     /**

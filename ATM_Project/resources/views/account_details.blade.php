@@ -31,39 +31,49 @@
         <div class="card-header">Account Actions</div>
         <div class="card-container">
           <div class="col-md-4">
-            <div class="form-group">
-              <label for="withdraw">Withdraw ammount:</label>
-              <input type="text" class="form-control" id="withdraw">
-              <button class="btn btn-warning">Submit</button>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="withdraw">Deposit ammount:</label>
-              <input type="text" class="form-control" id="deposit">
-              <button class="btn btn-warning">Submit</button>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <div class="box-container">
-                <div class="box">
-                  <label for="withdraw">Transfer ammount:</label>
-                  <input type="text" class="form-control" id="transfer">
-                </div>
-                <div class="box">
-                  <label for="withdraw">Recepient</label>
-                  <input type="text" class="form-control" id="transfer">
-                </div>
+            <form method="POST" action="\withdraw">
+              @csrf
+              <div class="form-group">
+                <label for="withdraw">Withdraw ammount:</label>
+                <input type="number" class="form-control" id="withdraw" name="withdraw" min="1" max="1000000">
+                <button type="submit" class="btn btn-warning">Submit</button>
               </div>
+            </form>
+          </div>
 
-              <button class="btn btn-warning">Submit</button>
-            </div>
+          <div class="col-md-4">
+            <form method="POST" action="\deposit">
+              @csrf
+              <div class="form-group">
+                <label for="deposit">Deposit ammount:</label>
+                <input type="number" class="form-control" id="deposit" name="deposit" min="1" max="1000000">
+                <button class="btn btn-warning">Submit</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-md-4">
+            <form method="POST" action="\transfer">
+              @csrf
+              <div class="form-group">
+                <div class="box-container">
+                  <div class="box">
+                    <label for="transferAmount">Transfer ammount:</label>
+                    <input type="number" class="form-control" id="transferAmount" name="transferAmount" min="1" max="1000000">
+                  </div>
+                  <div class="box">
+                    <label for="transferRecipient">Recepient</label>
+                    <input type="text" class="form-control" id="transferRecipient" name="transferRecipient" required>
+                  </div>
+                </div>
+                <button class="btn btn-warning">Submit</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-<!-- TRANSACTION HISTORY -->
+    <!-- TRANSACTION HISTORY -->
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">Transaction History</div>
@@ -92,7 +102,7 @@
         </div>
       </div>
     </div>
-<!--  END TRANSACTION HISTORY-->
+    <!--  END TRANSACTION HISTORY-->
 
 
   </div>
